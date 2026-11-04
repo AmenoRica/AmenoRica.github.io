@@ -120,3 +120,7 @@ Add each actual destination as an li > a inside .contact-links.
 On screens up to 600px, home logos form a horizontal, manually scrollable loop at 22px/s.
 Touch/hover/focus pauses it; wheel/touch release pauses for 1.5 seconds.
 Reduced motion disables automatic movement and duplicate cycles; the animation pause button also pauses the loop.
+
+Trackpad/mouse wheel navigation uses native browser scrolling with mandatory snapping at section boundaries.
+No input lockout or one-screen-per-gesture limit. Long sections scroll freely; logo morphing follows scroll position.
+Release update: Pretendard default text and native scrolling with mandatory section snapping.

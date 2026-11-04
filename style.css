@@ -1,5 +1,5 @@
 * { box-sizing: border-box; }
-:root { color-scheme: dark; background: #000; color: #fff; font-family: system-ui, sans-serif; }
+:root { color-scheme: dark; background: #000; color: #fff; font-family: 'Pretendard', sans-serif; }
 body { isolation: isolate; margin: 0; min-width: 240px; }
 .hero { position: relative; display: grid; place-items: center; min-height: 100svh; padding: 100px 20px; }
 .identity { width: max-content; max-width: 100%; padding-left: clamp(20px, 3vw, 36px); border-left: 1px solid #fff; text-align: left; transform: translateX(min(4vw, max(0px, calc((100vw - 100%) / 2 - 20px)))); }

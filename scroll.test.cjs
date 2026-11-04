@@ -25,3 +25,4 @@ assert.equal(wrapCarousel(550, 552), 1102);
 assert.equal(wrapCarousel(1104, 552), 552);
 assert.equal(wrapCarousel(-1, 552), 1103);
 assert.equal(wrapCarousel(20, 0), 0);
+
