@@ -1,0 +1,130 @@
+* { box-sizing: border-box; }
+:root { color-scheme: dark; background: #000; color: #fff; font-family: system-ui, sans-serif; }
+body { isolation: isolate; margin: 0; min-width: 240px; }
+.hero { position: relative; display: grid; place-items: center; min-height: 100svh; padding: 100px 20px; }
+.identity { width: max-content; max-width: 100%; padding-left: clamp(20px, 3vw, 36px); border-left: 1px solid #fff; text-align: left; transform: translateX(min(4vw, max(0px, calc((100vw - 100%) / 2 - 20px)))); }
+h1 { display: grid; align-items: center; justify-items: start; margin: 0; height: 1.25em; font: 400 clamp(30px, 9vw, 122px)/1.2 'IBM Plex Mono', monospace; letter-spacing: -.055em; white-space: nowrap; }
+.tagline { display: flex; justify-content: flex-start; align-items: baseline; gap: 0; margin: 4px 0 0; font-size: clamp(18px, 2.5vw, 30px); line-height: 1.7; letter-spacing: -.015em; color: #fff; }
+.roles { display: inline-grid; text-align: left; }
+.roles > span { grid-area: 1 / 1; white-space: nowrap; }
+.role-option { visibility: hidden; }
+.role-text { position: relative; justify-self: start; }
+a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-size: 12px; text-decoration: none; transition: transform 180ms ease, opacity 180ms ease; }
+@media (hover: hover) { nav a:hover { transform: translateY(-2px); opacity: .8; } }
+nav a:focus-visible { transform: translateY(-2px); opacity: .8; }
+@media (prefers-reduced-motion: reduce) { nav a:hover, nav a:focus-visible { transform: none; } }
+:focus-visible { outline: 1px solid #fff; outline-offset: 6px; }
+.motion-control { position: fixed; z-index: 2; top: 20px; left: 20px; padding: 10px 14px; background: #000; color: #fff; border: 1px solid #777; font: inherit; font-size: 13px; clip-path: inset(50%); }
+.motion-control:focus { clip-path: none; }
+@media (max-width: 380px) { .home-dock { gap: 16px; } .tagline { font-size: 18px; } }
+@media (max-height: 380px) { .hero { min-height: 380px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+
+.name-frame { position: relative; display: inline-grid; }
+/* Reserve the widest font so the rule stays fixed throughout the cycle. */
+.name-measure { grid-area: 1 / 1; visibility: hidden; }
+.name-text { position: absolute; left: 0; top: 0; }
+.name-text::after, .role-text::after { content: none; position: absolute; left: calc(100% + .055em); top: .18em; height: .83em; width: max(1px, .012em); background: currentColor; animation: cursor-blink 1s step-end infinite; }
+.name-text.typing::after, .role-text.typing::after { content: ''; }
+@keyframes cursor-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .name-text::after, .role-text::after { content: none; animation: none; } }
+
+@font-face { font-family: 'Noto Sans Runic'; src: url('assets/fonts/noto-sans-runic.ttf') format('truetype'); font-display: swap; }
+.pattern-field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: var(--pattern-opacity, .7); }
+
+.ink-curtain { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.tagline { position: relative; }
+.outro-text { display: none; position: absolute; left: 0; top: 0; white-space: nowrap; }
+.tagline.ending .tagline-prefix, .tagline.ending .roles { visibility: hidden; }
+.tagline.ending .outro-text { display: inline; }
+.outro-text.typing::after { content: ''; display: inline-block; width: 1px; height: .9em; margin-left: .1em; background: currentColor; animation: cursor-blink 1s step-end infinite; }
+@media (prefers-reduced-motion: reduce) { .outro-text::after { display: none; } }
+
+/* Match the space in the single-string ending so swapping text layers never shifts the role. */
+.tagline-prefix::after { content: " "; white-space: pre; }
+
+@font-face { font-family: 'AmenoFuri Logo'; src: url('assets/fonts/amenofuri-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+.amenofuri-logo { font: 400 34px/1.05 'AmenoFuri Logo', serif; letter-spacing: -.055em; white-space: nowrap; }
+.amenofuri-signature { position: relative; }
+.amenofuri-signature::before { content: ''; position: absolute; left: 0; right: .055em; top: .02em; height: .075em; background: #5bcefa; }
+
+ .project-links { position: relative; width: 156px; min-width: 0; margin: 0; padding: 0 9px 10px; border: 1px solid #fff; text-align: center; }
+.project-links a { display: block; width: max-content; min-height: 24px; margin-inline: auto; line-height: 20px; }
+.project-links .bukichi-link { margin-top: 5px; }
+.amenofuri-link { margin-bottom: 0; }
+.fan-site-label { margin-inline: auto; padding: 0 6px; white-space: nowrap; }
+.fan-site-squid { display: block; position: relative; width: 110px; height: 37px; margin: -8px auto 6px; object-fit: contain; }
+.fan-site-label span { position: relative; z-index: 1; display: block; font: 800 18px/1 'Fan Site Syne', sans-serif; letter-spacing: -.04em; }
+.fan-site-label small { display: block; margin-top: 2px; font-size: 10px; line-height: 1.2; letter-spacing: .04em; }
+@font-face { font-family: 'Fan Site Syne'; src: url('assets/fonts/fan-site-syne.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+
+@font-face { font-family: 'ugcatalog Logo'; src: url('assets/fonts/ugcatalog-logo.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Bukichi Logo'; src: url('assets/fonts/bukichi-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+.project-links .ugcatalog-link { font: 700 23px/24px 'ugcatalog Logo', serif; letter-spacing: -.055em; }
+.project-links .bukichi-link { font: 400 21px/24px 'Bukichi Logo', serif; letter-spacing: .015em; }
+
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.hero, .projects-screen { scroll-snap-align: start; }
+.home-dock { position: absolute; bottom: 60px; left: 0; right: 0; display: flex; align-items: flex-end; justify-content: center; gap: 28px; pointer-events: none; }
+.home-slot:first-child { width: 114px; height: 44px; margin-bottom: 10px; }
+.home-slot:nth-child(2) { width: 156px; height: 132px; }
+.project-dock { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+.project-mark { position: absolute; top: 0; left: 0; width: max-content; pointer-events: auto; }
+.project-dock:not(.positioned) { visibility: hidden; }
+.projects-screen { min-height: 100svh; width: min(940px, 100%); margin: auto; padding: 90px 36px; display: flex; flex-direction: column; justify-content: center; gap: 72px; }
+.project-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); align-items: center; gap: clamp(32px, 7vw, 100px); }
+.project-slot { min-height: 132px; display: grid; place-items: center; }
+.project-description h2 { margin: 0 0 14px; font-size: 22px; font-weight: 500; letter-spacing: -.025em; }
+.project-description p { margin: 0; min-height: 3em; font-size: 16px; line-height: 1.8; white-space: pre-line; word-break: keep-all; overflow-wrap: anywhere; }
+.fan-descriptions { display: grid; gap: 32px; }
+.project-description { opacity: var(--description-opacity, 1); }
+@media (max-width: 600px) {
+  .projects-screen { padding: 64px 28px; gap: 52px; }
+  .project-row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .project-slot { min-height: 44px; }
+  .project-row:last-child .project-slot { min-height: 132px; }
+  .project-description h2 { font-size: 20px; }
+  .project-description p { font-size: 15px; }
+}
+
+.project-slot > .project-mark { position: static; }
+
+.contact-shortcut { position: absolute; top: max(20px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); gap: 10px; font-size: 13px; z-index: 2; }
+.contact-shortcut:hover, .contact-shortcut:focus-visible { opacity: .8; }
+.contact-screen { min-height: 100svh; padding: 80px 28px; display: grid; place-items: center; scroll-snap-align: start; }
+.contact-screen:focus { outline: none; }
+.contact-content { width: min(100%, 580px); }
+.contact-content h2 { margin: 0 0 24px; font-size: 14px; font-weight: 400; letter-spacing: .06em; }
+.contact-invitation { margin: 0; font-size: clamp(32px, 5vw, 56px); line-height: 1.15; letter-spacing: -.045em; text-wrap: balance; }
+.contact-links { margin: 40px 0 0; padding: 0; list-style: none; }
+.contact-links:empty { display: none; }
+.contact-links li { border-bottom: 1px solid #fff; }
+.contact-links a { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; font-size: 18px; overflow-wrap: anywhere; }
+.contact-links a:hover, .contact-links a:focus-visible { opacity: .8; }
+
+.contact-note { margin: 20px 0 0; font-size: 16px; line-height: 1.6; word-break: keep-all; }
+.contact-service, .contact-address { display: block; }
+.contact-address { margin-top: 5px; font-size: 14px; line-height: 1.5; }
+
+.toys-link { font: 400 72px/1.2 'Super Beatpop', sans-serif; }
+.toys-link:hover, .toys-link:focus-visible { opacity: .8; }
+
+.home-toys-slot { width: 145px; height: 87px; margin-bottom: 6px; }
+.project-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 14px; }
+.project-heading h2 { margin: 0; }
+.project-visit { gap: 5px; font-size: 12px; }
+.project-visit:hover, .project-visit:focus-visible { opacity: .8; }
+/* The mobile strip supplies the starting positions for the same morphing marks. */
+.home-carousel { display: none; }
+@media (max-width: 600px) {
+  .home-dock { visibility: hidden; bottom: 28px; }
+  .project-dock .toys-link, .home-carousel .toys-link { font-size: 44px; }
+  .home-carousel { display: flex; position: absolute; left: 0; right: 0; bottom: 28px; gap: 28px; align-items: flex-end; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; padding: 10px 0; visibility: hidden; }
+  .home-carousel.active { visibility: visible; }
+  .home-carousel::-webkit-scrollbar { display: none; }
+  .carousel-cell { flex: 0 0 156px; display: flex; justify-content: center; align-items: flex-end; }
+}
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+  .carousel-cell:not([data-copy="1"]) { display: none; }
+}

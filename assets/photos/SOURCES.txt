@@ -1,0 +1,70 @@
+The Metropolitan Museum of Art — CC0 Open Access artworks, verified 2026-11-05.
+https://www.metmuseum.org/hubs/open-access
+Each API record below has isPublicDomain=true.
+Display treatment: curated focal-point square crops (faces, masks and wave crest), restrained rotation/color changes and darkening.
+
+met-425192.jpg — Detail with a Horned Mask Wearing a Whimple, from a Design for a Sword or Dagger Handle
+Theodor de Bry — 1592–93
+https://www.metmuseum.org/art/collection/search/425192
+https://collectionapi.metmuseum.org/public/collection/v1/objects/425192
+https://images.metmuseum.org/CRDImages/dp/web-large/DP837261.jpg
+
+met-422712.jpg — Panel with Grotesque Candelabrum Containing a Mask and Two Satyrs
+Heinrich Aldegrever — 1549
+https://www.metmuseum.org/art/collection/search/422712
+https://collectionapi.metmuseum.org/public/collection/v1/objects/422712
+https://images.metmuseum.org/CRDImages/dp/web-large/DP836776.jpg
+
+met-436532.jpg — Self-Portrait with a Straw Hat (obverse: The Potato Peeler)
+Vincent van Gogh — 1887
+https://www.metmuseum.org/art/collection/search/436532
+https://collectionapi.metmuseum.org/public/collection/v1/objects/436532
+https://images.metmuseum.org/CRDImages/ep/web-large/DT1502_cropped2.jpg
+
+met-45434.jpg — Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei)
+Katsushika Hokusai — ca. 1830–32
+https://www.metmuseum.org/art/collection/search/45434
+https://collectionapi.metmuseum.org/public/collection/v1/objects/45434
+https://images.metmuseum.org/CRDImages/as/web-large/DP130155.jpg
+
+Additional artworks, retrieved 2026-11-05. These are not part of the Met CC0 set.
+
+duchamp-fountain.jpg — Marcel Duchamp, Fountain (1917); photograph by Alfred Stieglitz
+https://commons.wikimedia.org/wiki/File:Marcel_Duchamp,_1917,_Fountain,_photograph_by_Alfred_Stieglitz.jpg
+https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg/960px-Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail
+Commons source labels: public domain (PD-Art / old publication); see file page.
+
+dark-side-moon.jpg — Pink Floyd, The Dark Side of the Moon cover (1973); Hipgnosis / George Hardie
+https://commons.wikimedia.org/wiki/File:The_Dark_Side_Of_The_Moon.jpg
+https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/The_Dark_Side_Of_The_Moon.jpg/1280px-The_Dark_Side_Of_The_Moon.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail
+Commons labels this cover PD-ineligible / threshold of originality, not CC0. This is the source assessment, not independent legal clearance. Entire cover is displayed, without cropping or hue shifts.
+
+kandinsky-composition-8.jpg — Vasily Kandinsky, Composition VIII (1923)
+https://commons.wikimedia.org/wiki/File:Vassily_Kandinsky,_1923_-_Composition_8,_huile_sur_toile,_140_cm_x_201_cm,_Mus%C3%A9e_Guggenheim,_New_York.jpg
+https://upload.wikimedia.org/wikipedia/commons/4/47/Vassily_Kandinsky%2C_1923_-_Composition_8%2C_huile_sur_toile%2C_140_cm_x_201_cm%2C_Mus%C3%A9e_Guggenheim%2C_New_York.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail_unscaled
+Commons source labels: public domain (PD-Art / old publication); see file page.
+
+malevich-black-square.jpg — Kazimir Malevich, Black Square (1915)
+https://en.wikipedia.org/wiki/Black_Square
+https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Kazimir_Malevich%2C_1915%2C_Black_Suprematic_Square%2C_oil_on_linen_canvas%2C_79.5_x_79.5_cm%2C_Tretyakov_Gallery%2C_Moscow.jpg/1280px-Kazimir_Malevich%2C_1915%2C_Black_Suprematic_Square%2C_oil_on_linen_canvas%2C_79.5_x_79.5_cm%2C_Tretyakov_Gallery%2C_Moscow.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail
+Commons source labels: public domain (PD-Art / old publication); see file page.
+
+mondrian-composition.jpg — Piet Mondrian, Composition II in Red, Blue and Yellow (1930)
+https://commons.wikimedia.org/wiki/File:Piet_Mondriaan,_1930_-_Mondrian_Composition_II_in_Red,_Blue,_and_Yellow.jpg
+https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Piet_Mondriaan%2C_1930_-_Mondrian_Composition_II_in_Red%2C_Blue%2C_and_Yellow.jpg/1280px-Piet_Mondriaan%2C_1930_-_Mondrian_Composition_II_in_Red%2C_Blue%2C_and_Yellow.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail
+Commons source labels: public domain (PD-Art / old publication); see file page.
+
+Footer squid photo — squid-cc0.jpg
+Title: Squid; photographer: Ian Dixon; taken 2016-03-28 off Roatan, Honduras.
+Source: https://commons.wikimedia.org/wiki/File:Squid_(165767123).jpeg
+Image license: CC0 1.0 Universal (explicit image permission, checked 2026-11-05).
+https://creativecommons.org/publicdomain/zero/1.0/
+Local file is the Commons 330px thumbnail; displayed uncropped at 40 × 25.
+
+Replacement footer asset: raw-squid-cutout.png
+Source photograph: Raw squid at a fish market, Jakub Kapusnak, CC0.
+https://www.foodiesfeed.com/free-food-photo/raw-squid-at-a-fish-market
+Source license checked 2026-11-05.
+Derived asset: AI-assisted extraction/reconstruction and rotation via built-in image_gen;
+not an untouched photographic crop. Transparent background. Replaces the underwater image in the footer.
+Prompt: Extract ONE recognizable intact pinkish squid from the central area, showing its long tapered mantle, fins, eye and arms. Remove other squid, tray, market and all background; preserve photographic appearance and pink-white speckled skin; horizontal mantle-left arms-right; actual transparent alpha; no text, shadow or illustration.

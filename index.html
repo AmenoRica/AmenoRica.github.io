@@ -1,68 +1,86 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#5BCEFA">
-  <meta name="description" content="서도화 — 게임 개발자/기획자 지망생, 다양한 게임을 플레이합니다. 기술 스택과 프로젝트를 소개합니다.">
-  <title>서도화 · 대충 개발자?</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="tokens.css?v=20260915-lines2">
-  <link rel="stylesheet" href="styles.css?v=20260921-name5">
-  <script src="app.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>AmenoRica</title>
+  <meta name="description" content="Fun-driven developer, designer, composer, artist, and project manager. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
+  <link rel="canonical" href="https://ameno.cc/">
+  <link rel="preload" href="assets/fonts/ibm-plex-mono.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=toys">
+  <link rel="stylesheet" href="style.css?v=background-dim">
+  <script src="patterns.js" defer></script>
+  <script src="background.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="scroll.js?v=background-dim" defer></script>
+  <noscript><style>
+    .project-dock:not(.positioned) { visibility: visible; position: absolute; inset: auto 0; top: calc(100svh - 192px); display: flex; justify-content: center; align-items: flex-end; gap: 28px; }
+    .project-mark { position: static; }
+  </style></noscript>
 </head>
 <body>
-  <a class="skip-link" href="#intro">본문 바로가기</a>
-  <aside class="rail">
-    <nav aria-label="목차">
-      <a href="#intro" aria-current="location"><span class="nav-index" aria-hidden="true">01</span><span>소개</span></a>
-      <a href="#projects"><span class="nav-index" aria-hidden="true">02</span><span>프로젝트</span></a>
-      <a href="#skills"><span class="nav-index" aria-hidden="true">03</span><span>기술</span></a>
-      <a href="#education"><span class="nav-index" aria-hidden="true">04</span><span>이력</span></a>
-    </nav>
-  </aside>
+  <canvas class="pattern-field" aria-hidden="true"></canvas>
+  <canvas class="ink-curtain" aria-hidden="true"></canvas>
+  <button class="motion-control" type="button" hidden aria-pressed="false">Pause animation</button>
   <main>
-    <section id="intro" class="intro" aria-labelledby="intro-title">
-      <div class="topline"><span>대충 개발자?</span><span>PORTFOLIO</span></div>
-      <div class="intro-content">
-        <p class="greeting">안녕하세요,</p>
-        <h1 id="intro-title"><span class="display-name">서도화</span><span class="name-end">입니다.</span></h1>
-        <p class="intro-description">게임 개발자/기획자 지망생,<br class="desktop-break"> 다양한 게임을 플레이합니다.</p>
+  <section class="hero" aria-label="Introduction">
+    <a class="contact-shortcut" href="#contact">Contact &amp; Links <span aria-hidden="true">↘</span></a>
+    <div class="identity">
+      <h1 aria-label="AmenoRica"><span class="name-frame" aria-hidden="true"><span class="name-measure" style="font-family: 'Instrument Serif'">AmenoRica</span><span class="name-measure" style="font-family: 'DM Sans'">AmenoRica</span><span class="name-measure" style="font-family: 'Cormorant Garamond'">AmenoRica</span><span class="name-measure" style="font-family: 'Space Grotesk'">AmenoRica</span><span class="name-measure" style="font-family: 'Bodoni Moda'">AmenoRica</span><span class="name-measure" style="font-family: 'IBM Plex Mono'">AmenoRica</span><span class="name-measure" style="font-family: 'Italiana'">AmenoRica</span><span class="name-measure" style="font-family: 'Syne'">AmenoRica</span><span class="name-measure" style="font-family: 'Playfair Display'">AmenoRica</span><span class="name-measure" style="font-family: 'Unbounded'">AmenoRica</span><span class="name-text">AmenoRica</span></span></h1>
+      <p class="tagline" aria-label="Fun-driven developer, designer, composer, artist, and project manager">
+        <span class="tagline-prefix" aria-hidden="true">Fun-driven</span>
+        <span class="roles" aria-hidden="true">
+          <span class="role-option">developer</span><span class="role-option">designer</span><span class="role-option">composer</span><span class="role-option">artist</span><span class="role-option">project manager</span>
+          <span class="role-text">developer</span>
+        </span>
+        <span class="outro-text" aria-hidden="true"></span>
+      </p>
+    </div>
+    <div class="home-dock"><span class="home-slot" aria-hidden="true"></span><span class="home-slot" aria-hidden="true"></span><span class="home-slot home-toys-slot" aria-hidden="true"></span></div>
+  </section>
+  <section class="projects-screen" aria-label="About the projects">
+    <div class="project-row">
+      <div class="project-slot" aria-hidden="true"></div>
+      <article class="project-description" aria-labelledby="about-amenofuri"><div class="project-heading"><h2 id="about-amenofuri" tabindex="-1">AmenoFuri</h2><a class="project-visit" href="https://furi.ameno.cc/" aria-label="AmenoFuri 사이트 바로가기" lang="ko">바로가기 <span aria-hidden="true">↗</span></a></div><p lang="ko" data-description="amenofuri">AmenoFuri는 비는 오지 않지만, 당장이라도 비가 내리는 듯한 감각, 코끝을 간지럽히는 비 냄새와 서늘하게 불어오는 바람. 살결을 스쳐가는 습기. 그 순간의 감각을 의미합니다.
+
+AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 탐구하고, 물리 모델링과 신경망 등 다양한 기법을 통해 가상악기로 재구성합니다. 같은 소리를 재현하기보다도, 물리법칙을 위배한 변형이나 재료 사용으로 낼 수 있는 독특한 소리를 탐구합니다.</p></article>
+    </div>
+    <div class="project-row">
+      <div class="project-slot" aria-hidden="true"></div>
+      <div class="fan-descriptions">
+        <article class="project-description" aria-labelledby="about-ugcatalog"><div class="project-heading"><h2 id="about-ugcatalog" tabindex="-1">ugcatalog</h2><a class="project-visit" href="https://ugcatalog.pages.dev/" aria-label="ugcatalog 사이트 바로가기" lang="ko">바로가기 <span aria-hidden="true">↗</span></a></div><p lang="ko" data-description="ugcatalog">ugcatalog는 스플래툰 캐릭터를 커스터마이징하는 걸 넘어, 유저들의 캐릭터를 모아 한 권의 책으로 엮어내는 컨셉의 커스터마이즈 공유 사이트입니다. 인 게임 락커 한켠에 있을 법한 책에서 당신의 캐릭터를 찾아보세요.</p></article>
+        <article class="project-description" aria-labelledby="about-bukichi"><div class="project-heading"><h2 id="about-bukichi" tabindex="-1">bukichi.fans</h2><a class="project-visit" href="https://bukichi.fans/" aria-label="bukichi.fans 사이트 바로가기" lang="ko">바로가기 <span aria-hidden="true">↗</span></a></div><p lang="ko" data-description="bukichi">bukichi.fans는 스플래툰에 존재하는 다양한 요소들을 텍스트나 숫자가 아닌 다양한 방법으로 체감하며 익힐 수 있는 사이트입니다. 기어 파워 설정의 결과를 숫자가 아니라 애니메이션으로 보고, 잉크 사용량을 직접 사격하면서 체감할 수 있습니다. 퀴즈를 통해 무기를 익히고, 3D로 맵 구석구석을 바라보며 전략을 짜는 것도 물론 가능합니다.</p></article>
       </div>
-      <div class="sweeping-lines" aria-hidden="true">
-        <svg viewBox="0 0 500 700" preserveAspectRatio="none" fill="none">
-          <path class="draw-line from-top" d="M410 -40 V740" pathLength="1"/>
-          <path class="draw-line from-upper-left" d="M70 -56 L650 756" pathLength="1"/>
-          <path class="draw-line from-right" d="M660 110 L60 770" pathLength="1"/>
-        </svg>
-      </div>
-      <a class="intro-next" href="#projects">프로젝트 살펴보기 <span aria-hidden="true">↘</span></a>
-      <div class="intro-baseline" aria-hidden="true"></div>
-    </section>
-
-    <section id="projects" class="section projects" aria-labelledby="projects-title">
-      <div class="section-heading"><h2 id="projects-title">프로젝트</h2></div>
-      <div id="project-list" aria-live="polite"><p class="load-message">프로젝트를 불러오는 중입니다.</p></div>
-      <noscript><p>프로젝트 소개를 보려면 JavaScript를 켜 주세요.</p><ul><li><a href="https://kookmin-sw.github.io/2026-capstone-11/">Call of the King</a></li><li><a href="https://ugcatalog.pages.dev">Underground Catalog</a></li><li><a href="https://amenorica.github.io/splatoon3-weapon-browser/">스플래툰 3 무기 데이터베이스</a></li></ul></noscript>
-    </section>
-
-    <section id="skills" class="section skills" aria-labelledby="skills-title">
-      <div class="section-heading"><h2 id="skills-title">사용하는 기술</h2></div>
-      <dl class="skill-list">
-        <div><dt>C# <span class="join">/</span> Unity</dt><dd><strong>게임 개발</strong><p>C#과 유니티를 이용한 게임 개발이 가능합니다.</p></dd></div>
-        <div><dt>Python <span class="join">/</span><br> JavaScript</dt><dd><strong>유틸리티 제작</strong><p>파이썬과 자바스크립트를 이용해 간단한 유틸리티를 제작할 수 있습니다.</p></dd></div>
-      </dl>
-    </section>
-
-    <section id="education" class="section education" aria-labelledby="education-title">
-      <h2 id="education-title">이력</h2>
-      <div class="education-info"><h3>국민대학교</h3><p>소프트웨어학과</p><span class="enrollment">4학년 재학 중</span></div>
-    </section>
-    <footer><p>플레이하고, 만들고, 기록합니다.</p><a href="#intro">맨 위로 <span aria-hidden="true">↑</span></a></footer>
+    </div>
+    <div class="project-row">
+      <div class="project-slot" aria-hidden="true"></div>
+      <article class="project-description" aria-labelledby="about-toys"><div class="project-heading"><h2 id="about-toys" tabindex="-1">toys</h2><a class="project-visit" href="https://amenorica.github.io/toys/" aria-label="toys 사이트 바로가기" lang="ko">바로가기 <span aria-hidden="true">↗</span></a></div><p lang="ko">프로젝트까지 갈 것도 없는. 그냥 웹에서 끄적인 것들을 모아두는 공간입니다. 웹 장난감이 생길 때마다 추가하고, 가끔 진짜 프로젝트로 떨어져 나오기도 합니다. 심심할 때 놀 것들이 좀 있을지도 모르겠습니다.</p></article>
+    </div>
+  </section>
+  <section class="contact-screen" id="contact" aria-labelledby="contact-heading" tabindex="-1">
+    <div class="contact-content">
+      <h2 id="contact-heading">Contact &amp; Links</h2>
+      <p class="contact-invitation">Let’s make something fun.</p>
+      <p class="contact-note" lang="ko">아무 이유 없이 연락 주세요 :)</p>
+      <ul class="contact-links">
+        <li><a href="mailto:contact@ameno.cc"><span><span class="contact-service">Email</span><span class="contact-address">contact@ameno.cc</span></span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://x.com/S3Y_7_3RO"><span><span class="contact-service">X</span><span class="contact-address">@S3Y_7_3RO</span></span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://discord.com/users/1412777957918900227"><span><span class="contact-service">Discord</span><span class="contact-address">toukedouka</span></span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://github.com/AmenoRica"><span><span class="contact-service">GitHub</span><span class="contact-address">AmenoRica</span></span><span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </div>
+  </section>
   </main>
+  <nav class="project-dock" aria-label="Projects">
+    <div class="project-mark"><a class="amenofuri-link" href="#about-amenofuri" aria-label="AmenoFuri"><span class="amenofuri-logo" aria-hidden="true">Ameno<span class="amenofuri-signature">Furi</span></span></a></div>
+    <div class="project-mark"><fieldset class="project-links">
+      <legend class="fan-site-label"><span>Splatoon<small>Fan Sites</small></span></legend>
+      <img class="fan-site-squid" src="assets/photos/raw-squid-cutout.png" width="110" height="37" alt="Squid">
+      <a class="ugcatalog-link" href="#about-ugcatalog">ugcatalog</a>
+      <a class="bukichi-link" href="#about-bukichi">bukichi.fans</a>
+    </fieldset></div>
+    <div class="project-mark"><a class="toys-link" href="#about-toys">toys</a></div>
+  </nav>
 </body>
 </html>
