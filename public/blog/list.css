@@ -74,7 +74,7 @@
       .post-logo.all, .post-logo.amenorica, .post-logo.weblog { font-size: 23px; }
       .post-logo.toys { font-size: 28px; }
       .articles ol { gap: 34px; }
-      .post { grid-template-columns: 94px minmax(0, 1fr); column-gap: 12px; }
+      .post { grid-template-columns: 112px minmax(0, 1fr); column-gap: 12px; }
       .post-logo { font-size: 23px; }
       .post-meta time { font-size: 11px; }
       .post-logo.ugcatalog { font-size: 19px; }
