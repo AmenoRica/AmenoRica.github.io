@@ -1,13 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, cpSync, symlinkSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, cpSync, symlinkSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌드한다', () => {
  const folder = mkdtempSync(join(tmpdir(),'amenorica-content-'));
  try {
-  cpSync('src',join(folder,'src'),{recursive:true});
+  cpSync('src',join(folder,'src'),{recursive:true, filter: source => resolve(source) !== resolve('src/content/posts')});
+  mkdirSync(join(folder,'src/content/posts'));
   cpSync('astro.config.mjs',join(folder,'astro.config.mjs'));
   writeFileSync(join(folder,'package.json'),'{"type":"module"}');
   symlinkSync(resolve('node_modules'),join(folder,'node_modules'),'dir');
