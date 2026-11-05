@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Logo from '../../components/Logo.astro';
+import { displayDate } from '../../lib/dates.mjs';
+const posts = (await getCollection('posts', ({data}) => !data.draft)).sort((a,b) => b.data.createdAt.localeCompare(a.data.createdAt));
+const categories = (await getCollection('categories')).sort((a,b) => a.data.order-b.data.order);
+---
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>weB*LOG — AmenoRica</title>
+  <script is:inline src="theme-preference.js"></script>
+  <link rel="stylesheet" href="../assets/fonts.css">
+  <link rel="stylesheet" href="/blog/list.css">
+  <script is:inline type="module" src="hanging-title.js"></script>
+  <script is:inline src="pagination.js" defer></script>
+</head>
+<body>
+  <a class="home-brand" href="../" aria-label="AmenoRica 홈페이지">AmenoRica</a>
+  <main>
+    <h1 class="sr-only">weB*LOG</h1>
+    <div class="hanging-title">
+      <canvas id="hanging-canvas" aria-hidden="true"></canvas>
+      <div class="keyboard-controls" role="group" aria-label="실에 매달린 weB*LOG">
+        <button class="sr-only">w 흔들기</button><button class="sr-only">e 흔들기</button><button class="sr-only">B 흔들기</button><button class="sr-only">별표 이스터에그: 테마 전환</button><button class="sr-only">L 흔들기</button><button class="sr-only">O 흔들기</button><button class="sr-only">G 흔들기</button>
+      </div>
+    </div>
+    <section class="articles" aria-label="블로그 글 목록">
+      <div class="category-picker">
+        <button class="category-trigger" type="button" aria-expanded="false" aria-controls="category-options" aria-label="카테고리 선택, 현재 필터 없음"><span class="category-label">Select<br>Category</span><span class="arrow" aria-hidden="true">›</span></button>
+        <div class="category-options" id="category-options" role="group" aria-label="프로젝트 카테고리" hidden>
+          <button type="button" data-category="all" aria-label="ALL" aria-pressed="true"><span class="post-logo all">ALL</span></button>
+          {categories.map(category => <button type="button" data-category={category.id} aria-label={category.data.title} aria-pressed="false"><Logo category={category} /></button>)}
+        </div>
+      </div>
+      <div class="article-viewport">
+      <ol id="article-page" tabindex="-1">
+        {posts.map(post => <li data-category={post.data.category.id}><article class="post">
+          <div class="post-meta"><time datetime={post.data.createdAt}>{displayDate(post.data.createdAt)}</time><Logo category={categories.find(category => category.id === post.data.category.id)} /></div>
+          <div class="post-copy"><h2><a class="post-title-link" href={`/blog/${post.id}/`}>{post.data.title}</a></h2>{post.data.subtitle && <p class="post-subtitle">{post.data.subtitle}</p>}</div>
+        </article></li>)}
+      </ol>
+      </div>
+      <nav class="pagination" aria-label="글 목록 페이지" hidden>
+        <button type="button" data-step="-1" aria-label="이전 페이지" aria-controls="article-page">&lt;</button>
+        {Array.from({length: Math.max(1, Math.ceil(posts.length / 6))}, (_, i) => <button type="button" data-page={i+1} aria-label={`${i+1}페이지`} aria-controls="article-page">{i+1}</button>)}
+        <button type="button" data-step="1" aria-label="다음 페이지" aria-controls="article-page">&gt;</button>
+      </nav>
+      <p class="sr-only" id="page-status" aria-live="polite"></p>
+    </section>
+  </main>
+  <div id="theme-ink" aria-hidden="true" hidden></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <button class="theme-toggle" type="button" aria-label="라이트 모드" aria-pressed="false">◐</button>
+</body>
+</html>

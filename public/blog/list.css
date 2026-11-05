@@ -1,0 +1,86 @@
+
+    @font-face { font-family: 'Blog Bodoni'; src: url('/assets/fonts/blog-bodoni-moda.ttf') format('truetype'); font-weight: 400 900; font-style: normal; font-display: block; }
+    * { box-sizing: border-box; }
+    html { color-scheme: light; --background: #fff; --ink: #000; background: var(--background); color: var(--ink); }
+    @media(prefers-color-scheme: dark) { html:not([data-theme="light"]) { color-scheme: dark; --background: #000; --ink: #fff; } }
+    html[data-theme="dark"] { color-scheme: dark; --background: #000; --ink: #fff; }
+    html[data-theme="light"] { color-scheme: light; --background: #fff; --ink: #000; }
+    body { margin: 0; min-height: 100svh; }
+    .home-brand { position: absolute; top: 24px; left: 28px; z-index: 3; color: inherit; font: 400 17px/1.3 'Instrument Serif', serif; text-decoration: none; }
+    .home-brand:hover { opacity: .7; }
+    .home-brand:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; }
+    .hanging-title { position: relative; height: 460px; overflow: hidden; }
+    #hanging-canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+    #hanging-canvas.dragging { touch-action: none; cursor: grabbing; }
+    #theme-ink { position: fixed; inset: 0; z-index: 4; background: #fff; mix-blend-mode: difference; pointer-events: none; }
+    #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    .theme-toggle { position: fixed; bottom: 20px; left: 20px; z-index: 3; min-height: 44px; min-width: 44px; padding: 8px; border: 0; background: transparent; color: inherit; font: 12px Pretendard, sans-serif; cursor: pointer; }
+    .theme-toggle:hover { opacity: .65; }
+    .theme-toggle:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .keyboard-controls button:focus-visible { position: fixed; top: 12px; left: 12px; width: auto; height: auto; clip-path: none; margin: 0; padding: 8px 12px; background: var(--background); color: var(--ink); border: 1px solid currentColor; z-index: 3; }
+    @media(max-width: 600px) { .hanging-title { height: 330px; } }
+    @font-face { font-family: 'AmenoFuri Logo'; src: url('/assets/fonts/amenofuri-logo.ttf') format('truetype'); font-display: swap; }
+    @font-face { font-family: 'ugcatalog Logo'; src: url('/assets/fonts/ugcatalog-logo.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Bukichi Logo'; src: url('/assets/fonts/bukichi-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    .articles { max-width: 1060px; margin: 0 auto; padding: 0 40px 140px; font-family: Pretendard, sans-serif; }
+    .articles ol { display: grid; gap: 44px; list-style: none; margin: 0; padding: 0; scroll-margin-top: 28px; outline: none; }
+    .page-gap { display: grid; place-items: center; font-size: 36px; font-weight: 700; letter-spacing: .3em; color: var(--ink); }
+    .page-gap[hidden] { display: none; }
+    .category-picker { display: flex; align-items: center; gap: 20px; min-height: 64px; margin-bottom: 36px; }
+    .category-picker button { border: 0; background: transparent; color: inherit; cursor: pointer; min-height: 44px; }
+    .category-picker .category-trigger { display: flex; justify-content: space-between; align-items: center; flex: 0 0 130px; padding: 8px 0; text-align: left; font: 14px/1.35 Pretendard, sans-serif; }
+    .category-trigger .arrow { margin-left: 10px; transition: transform .18s; }
+    .category-trigger[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+    .category-options { display: flex; align-items: center; gap: 28px; flex: 1; min-width: 0; overflow-x: auto; padding: 8px 4px; }
+    .category-options[hidden] { display: none; }
+    .category-options:not([hidden]) { animation: unfold-right .4s ease-out; }
+    .category-options button { flex: 0 0 auto; padding: 8px 4px; }
+    .category-options button[aria-pressed="true"] { box-shadow: inset 0 -1px currentColor; }
+    .category-picker button:hover { opacity: .65; }
+    .category-picker button:focus-visible { outline: 1px solid currentColor; outline-offset: -1px; }
+    .category-picker button:disabled { opacity: .4; cursor: default; }
+    @keyframes unfold-right { from { clip-path: inset(0 100% 0 0); opacity: 0; } to { clip-path: inset(0); opacity: 1; } }
+    @media(prefers-reduced-motion: reduce) { .category-options:not([hidden]) { animation: none; } .category-trigger .arrow { transition: none; } }
+    .article-viewport { overflow: hidden; }
+    .pagination[hidden] { display: none; }
+    .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 52px; }
+    .pagination button { min-width: 44px; min-height: 44px; padding: 8px; border: 0; background: transparent; color: inherit; font: 14px Pretendard, sans-serif; cursor: pointer; }
+    .pagination button[aria-current="page"] { text-decoration: underline; text-underline-offset: 7px; }
+    .pagination button:disabled { opacity: .3; cursor: default; }
+    .pagination button:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+    .post { display: grid; grid-template-columns: 150px minmax(0, 1fr); column-gap: 16px; align-items: stretch; }
+    .post-meta { display: flex; flex-direction: column; align-items: flex-end; text-align: right; justify-content: center; gap: 13px; padding: 6px 0; }
+    .post-meta time { font-size: 12px; line-height: 1.4; font-variant-numeric: tabular-nums; opacity: .65; }
+    .post-logo { font: 28px/1.1 'AmenoFuri Logo', serif; letter-spacing: -.055em; white-space: nowrap; }
+    .post-logo.ugcatalog { font: 700 23px/1.1 'ugcatalog Logo', serif; letter-spacing: -.055em; }
+    .post-logo.bukichi { font: 400 21px/1.1 'Bukichi Logo', serif; letter-spacing: .015em; }
+    .post-logo.all, .post-logo.amenorica, .post-logo.weblog { font: 400 28px/1.1 'Blog Bodoni', serif; letter-spacing: -.065em; }
+    .post-logo.toys { font: 400 34px/1.1 'Super Beatpop', sans-serif; letter-spacing: 0; }
+    .post-logo .signature { position: relative; }
+    .post-logo .signature::before { content: ''; position: absolute; left: 0; right: .055em; top: .02em; height: .075em; background: #5bcefa; }
+    .post-copy { display: flex; flex-direction: column; justify-content: center; min-height: 88px; padding: 8px 0 8px 28px; border-left: 1px solid currentColor; }
+    .post h2 { margin: 0; font-size: 27px; font-weight: 500; line-height: 1.5; letter-spacing: -.035em; word-break: keep-all; overflow-wrap: anywhere; }
+    .post-title-link { color: inherit; text-decoration: none; transition: opacity .16s ease; }
+    .post-title-link:hover { opacity: .65; }
+    .post-title-link:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }
+    @media(prefers-reduced-motion: reduce) { .post-title-link { transition: none; } }
+    .post-subtitle { margin: 6px 0 0; font-size: 15px; line-height: 1.65; opacity: .65; word-break: keep-all; overflow-wrap: anywhere; }
+    @media(max-width: 600px) {
+      .articles { padding: 0 24px 110px; }
+      .category-picker { gap: 12px; }
+      .category-picker .category-trigger { flex-basis: 110px; }
+      .category-options { gap: 22px; }
+      .post-logo.all, .post-logo.amenorica, .post-logo.weblog { font-size: 23px; }
+      .post-logo.toys { font-size: 28px; }
+      .articles ol { gap: 34px; }
+      .post { grid-template-columns: 94px minmax(0, 1fr); column-gap: 12px; }
+      .post-logo { font-size: 23px; }
+      .post-meta time { font-size: 11px; }
+      .post-logo.ugcatalog { font-size: 19px; }
+      .post-logo.bukichi { font-size: 16px; }
+      .post-copy { padding-left: 18px; }
+      .post h2 { font-size: 20px; }
+      .post-subtitle { font-size: 13px; }
+    }
+  

@@ -3,30 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="dark light">
   <title>AmenoRica</title>
   <meta name="description" content="Fun-driven developer, designer, composer, artist, and project manager. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
   <link rel="canonical" href="https://ameno.cc/">
   <link rel="preload" href="assets/fonts/ibm-plex-mono.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css?v=logo-subsets">
-  <link rel="stylesheet" href="style.css?v=logo-subsets">
+  <link rel="stylesheet" href="style.css?v=blog-shortcut">
   <script src="patterns.js" defer></script>
-  <script src="background.js" defer></script>
+  <script src="background.js?v=viewport-paint" defer></script>
   <script src="motion.js" defer></script>
-  <script src="scroll.js?v=native-scroll" defer></script>
+  <script src="scroll.js?v=layout-reads" defer></script>
   <script src="wallet.js?v=compact" defer></script>
+  <script type="module" src="theme.mjs?v=cleanup"></script>
   <noscript><style>
     .project-dock:not(.positioned) { visibility: visible; position: absolute; inset: auto 0; top: calc(100svh - 192px); display: flex; justify-content: center; align-items: flex-end; gap: 28px; }
     .project-mark { position: static; }
   </style></noscript>
 </head>
 <body>
+  <button class="theme-toggle" type="button" aria-label="라이트 모드" aria-pressed="false" hidden>◐ Light</button>
   <canvas class="pattern-field" aria-hidden="true"></canvas>
   <canvas class="ink-curtain" aria-hidden="true"></canvas>
   <button class="motion-control" type="button" hidden aria-pressed="false">Pause animation</button>
   <main>
   <section class="hero" aria-label="Introduction">
-    <a class="contact-shortcut" href="#contact">Contact &amp; Links <span aria-hidden="true">↘</span></a>
+    <div class="home-shortcuts">
+      <a class="contact-shortcut" href="#contact">Contact &amp; Links <span aria-hidden="true">↘</span></a>
+      <a class="blog-shortcut" href="/blog/" aria-label="Blog"><span><span class="blog-muted">we</span>B<span class="blog-muted">*</span>log</span> <span aria-hidden="true">↗</span></a>
+    </div>
     <div class="identity">
       <h1 aria-label="AmenoRica"><span class="name-frame" aria-hidden="true"><span class="name-measure" style="font-family: 'Instrument Serif'">AmenoRica</span><span class="name-measure" style="font-family: 'DM Sans'">AmenoRica</span><span class="name-measure" style="font-family: 'Cormorant Garamond'">AmenoRica</span><span class="name-measure" style="font-family: 'Space Grotesk'">AmenoRica</span><span class="name-measure" style="font-family: 'Bodoni Moda'">AmenoRica</span><span class="name-measure" style="font-family: 'IBM Plex Mono'">AmenoRica</span><span class="name-measure" style="font-family: 'Italiana'">AmenoRica</span><span class="name-measure" style="font-family: 'Syne'">AmenoRica</span><span class="name-measure" style="font-family: 'Playfair Display'">AmenoRica</span><span class="name-measure" style="font-family: 'Unbounded'">AmenoRica</span><span class="name-text">AmenoRica</span></span></h1>
       <p class="tagline" aria-label="Fun-driven developer, designer, composer, artist, and project manager">
@@ -82,7 +87,7 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
     <div class="project-mark"><a class="amenofuri-link" href="#about-amenofuri" aria-label="AmenoFuri"><span class="amenofuri-logo" aria-hidden="true">Ameno<span class="amenofuri-signature">Furi</span></span></a></div>
     <div class="project-mark"><fieldset class="project-links">
       <legend class="fan-site-label"><span>Splatoon<small>Fan Sites</small></span></legend>
-      <img class="fan-site-squid" src="assets/photos/raw-squid-cutout.png" width="110" height="37" alt="Squid">
+      <img class="fan-site-squid" src="assets/photos/squid-logo.png" width="110" height="37" alt="Squid" decoding="async">
       <a class="ugcatalog-link" href="#about-ugcatalog">ugcatalog</a>
       <a class="bukichi-link" href="#about-bukichi">bukichi.fans</a>
     </fieldset></div>

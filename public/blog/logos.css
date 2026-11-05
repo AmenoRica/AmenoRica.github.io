@@ -1,0 +1,16 @@
+    @font-face { font-family: 'Blog Bodoni'; src: url('/assets/fonts/blog-bodoni-moda.ttf') format('truetype'); font-weight: 400 900; font-style: normal; font-display: block; }
+    @font-face { font-family: 'AmenoFuri Logo'; src: url('/assets/fonts/amenofuri-logo.ttf') format('truetype'); font-display: swap; }
+    @font-face { font-family: 'ugcatalog Logo'; src: url('/assets/fonts/ugcatalog-logo.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Bukichi Logo'; src: url('/assets/fonts/bukichi-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    .post-logo { font: 28px/1.1 'AmenoFuri Logo', serif; letter-spacing: -.055em; white-space: nowrap; }
+    .post-logo.ugcatalog { font: 700 23px/1.1 'ugcatalog Logo', serif; letter-spacing: -.055em; }
+    .post-logo.bukichi { font: 400 21px/1.1 'Bukichi Logo', serif; letter-spacing: .015em; }
+    .post-logo.all, .post-logo.amenorica, .post-logo.weblog { font: 400 28px/1.1 'Blog Bodoni', serif; letter-spacing: -.065em; }
+    .post-logo.toys { font: 400 34px/1.1 'Super Beatpop', sans-serif; letter-spacing: 0; }
+    .post-logo .signature { position: relative; }
+    .post-logo .signature::before { content: ''; position: absolute; left: 0; right: .055em; top: .02em; height: .075em; background: #5bcefa; }
+      .post-logo.all, .post-logo.amenorica, .post-logo.weblog { font-size: 23px; }
+      .post-logo.toys { font-size: 28px; }
+      .post-logo { font-size: 23px; }
+      .post-logo.ugcatalog { font-size: 19px; }
+      .post-logo.bukichi { font-size: 16px; }

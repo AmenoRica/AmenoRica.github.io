@@ -1,5 +1,6 @@
+function loadClassic(name) { const module = {exports:{}}; new Function('module', require('node:fs').readFileSync(__dirname+'/../public/'+name,'utf8'))(module); return module.exports; }
 const assert=require('node:assert/strict');
-const {edgePath,choosePath}=require('./patterns.js');
+const {edgePath,choosePath}=loadClassic('patterns.js');
 let seed=17;
 const random=()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
 
@@ -13,7 +14,7 @@ for(const [w,h] of [[320,640],[1440,900],[900,320]])for(let i=0;i<1000;i++){
 
 console.log('PASS: 3,000 random lines travel left to right with a gentle slope.');
 
-const {makeStrip}=require('./patterns.js');
+const {makeStrip}=loadClassic('patterns.js');
 const crops=[];
 const ctx={save(){},restore(){},translate(){},rotate(){},fillRect(){},drawImage(...args){crops.push({args,filter:this.filter});}};
 global.document={createElement:()=>({getContext:()=>ctx})};

@@ -1,0 +1,7 @@
+---
+const { category } = Astro.props;
+const { title, style, image } = category.data;
+---
+<span class:list={['post-logo', style]} aria-label={title}>
+  {image ? <img src={image} alt="" style="max-width:130px;max-height:38px;vertical-align:middle" /> : category.id === 'amenofuri' ? <span aria-hidden="true">Ameno<span class="signature">Furi</span></span> : title}
+</span>

@@ -1,0 +1,37 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Logo from '../../components/Logo.astro';
+import { displayDate, lastModified } from '../../lib/dates.mjs';
+export async function getStaticPaths() {
+  return (await getCollection('posts', ({data}) => !data.draft)).map(post => ({params: {slug:post.id}, props:{post}}));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const category = await getEntry(post.data.category);
+const modified = lastModified(post.filePath, post.data.createdAt);
+---
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>{post.data.title} — AmenoRica</title>
+<script is:inline src="../theme-preference.js"></script>
+<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="/blog/article.css"><link rel="stylesheet" href="/blog/logos.css"><script is:inline src="/blog/brand.js" defer></script>
+<script is:inline type="module">import { createTheme } from "../theme-mode.mjs"; createTheme();</script>
+</head>
+<body id="top">
+<a class="skip" href="#article">본문으로 건너뛰기</a>
+<nav aria-label="주 메뉴"><div class="brand-group"><a class="brand" href="../" aria-label="AmenoRica"><span aria-hidden="true">AmenoRica</span></a></div><a class="nav-label" href="../">← List</a></nav>
+<main class="layout">
+<aside aria-label="글 정보"><Logo category={category} /><time datetime={post.data.createdAt} aria-label="첫 작성일">{displayDate(post.data.createdAt)}</time>{modified && <p class="modified"><time datetime={modified}>{displayDate(modified)}.에 마지막 수정</time></p>}</aside>
+<article id="article" lang="ko">
+<header class="article-head"><h1>{post.data.title}</h1>{post.data.subtitle && <p class="intro">{post.data.subtitle}</p>}</header>
+<div class="body"><Content /></div>
+<div class="end"><a href="../">← List</a><a href="#top">Top ↑</a></div>
+</article>
+</main>
+
+<div id="theme-ink" aria-hidden="true" hidden></div>
+<button class="theme-toggle" type="button" aria-label="라이트 모드" aria-pressed="false">◐</button>
+</body></html>

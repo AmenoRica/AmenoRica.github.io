@@ -12,7 +12,7 @@ async function setup(reduce=false,failFonts=false) {
   const painted=[];
   const background={ready:Promise.resolve(),busy:false,paused:false,start(role){assert(!this.busy);this.busy=true;painted.push({role,font:title.style.fontFamily,name:name.textContent,text:roleText.textContent});},setPaused(v){this.paused=v;},flood(){assert.equal(outro.textContent,'And…?');assert.equal(painted.length%5,0);this.busy=true;this.flooding=true;},reveal(){this.covered=false;},cancel(){this.busy=false;this.flooding=false;this.covered=false;}};
   const document={hidden:false,querySelector:s=>({'h1':title,'.name-text':name,'.role-text':roleText,'.tagline':tagline,'.outro-text':outro,'.motion-control':control}[s]),querySelectorAll:()=>roles.map(textContent=>({textContent})),addEventListener:(_,f)=>listeners.visibility=f,fonts:{load:async()=>{if(failFonts)throw Error('missing');return [{}];}}};
-  vm.runInNewContext(fs.readFileSync(__dirname+'/motion.js','utf8'),{document,window:{AmenoBackground:background},matchMedia:()=>media,setInterval:fn=>{intervals.set(++id,fn);return id;},clearInterval:id=>intervals.delete(id)});
+  vm.runInNewContext(fs.readFileSync(__dirname+'/../public/motion.js','utf8'),{document,window:{AmenoBackground:background},matchMedia:()=>media,setInterval:fn=>{intervals.set(++id,fn);return id;},clearInterval:id=>intervals.delete(id)});
   await new Promise(setImmediate);
   const step=()=>{
     const oldName=name.textContent,oldRole=roleText.textContent;

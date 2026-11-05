@@ -108,11 +108,11 @@ if (typeof document !== 'undefined') (() => {
     const positions = marks.map((mark, index) => {
       const screen = targets[index].closest('.projects-screen');
       const progress = projectTransition(scroll, screen.offsetTop, reduced.matches);
-      const mobileCells = cells.filter(cell => Number(cell.dataset.index) === index && cell.offsetWidth);
-      const source = narrow.matches && mobileCells.length ? mobileCells.reduce((best, cell) =>
-        Math.abs(cell.getBoundingClientRect().x + cell.offsetWidth / 2 - innerWidth / 2) <
-        Math.abs(best.getBoundingClientRect().x + best.offsetWidth / 2 - innerWidth / 2) ? cell : best) : homes[index];
-      const from = source.getBoundingClientRect();
+      const mobileCells = narrow.matches ? cells.filter(cell => Number(cell.dataset.index) === index && cell.offsetWidth) : [];
+      const cellRects = mobileCells.map(cell => cell.getBoundingClientRect());
+      const from = cellRects.length ? cellRects.reduce((best, rect) =>
+        Math.abs(rect.x + rect.width / 2 - innerWidth / 2) <
+        Math.abs(best.x + best.width / 2 - innerWidth / 2) ? rect : best) : homes[index].getBoundingClientRect();
       const to = targets[index].getBoundingClientRect();
       const width = mark.offsetWidth, height = mark.offsetHeight;
       const x = from.left + (from.width - width) / 2;

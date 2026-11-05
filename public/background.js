@@ -3,7 +3,8 @@
   const c = canvas.getContext('2d');
   const curtain = document.querySelector('.ink-curtain');
   const ink = curtain.getContext('2d');
-  let covered = false;
+  const light = matchMedia('(prefers-color-scheme: light)');
+  let covered = false, themeOverride, curtainPainted = false;
   const history = document.createElement('canvas');
   const h = history.getContext('2d');
   let active = null, paused = false, frame = 0, previous = 0;
@@ -57,10 +58,14 @@
   function render() {
     c.setTransform(1,0,0,1,0,0); c.clearRect(0,0,canvas.width,canvas.height);
     c.setTransform(ratio,0,0,ratio,(width-worldWidth)*ratio/2,(height-worldHeight)*ratio/2);
-    c.drawImage(history,0,0);
+    const sx = Math.max(0, (worldWidth-width)/2), sy = Math.max(0, (worldHeight-height)/2);
+    c.drawImage(history,sx,sy,Math.min(width,worldWidth),Math.min(height,worldHeight),
+      sx,sy,Math.min(width,worldWidth),Math.min(height,worldHeight));
     if (active) paint(c,Math.min(1,active.elapsed/active.duration));
+    if (!covered && active?.kind !== 'flood' && !curtainPainted) return;
     ink.setTransform(ratio,0,0,ratio,0,0);ink.clearRect(0,0,width,height);
-    ink.fillStyle='#000';
+    curtainPainted = covered || active?.kind === 'flood';
+    ink.fillStyle=(themeOverride ?? light.matches) ? '#fff' : '#000';
     if(covered) ink.fillRect(0,0,width,height);
     else if(active?.kind==='flood') {
       const progress=Math.min(1,active.elapsed/active.duration);
@@ -95,6 +100,7 @@
   }
   const api = {
     ready,
+    setTheme(value) { themeOverride = value; render(); },
     get busy() { return Boolean(active); },
     start(role) {
       if(active) return;
@@ -121,6 +127,7 @@
     },
     cancel() { cancelAnimationFrame(frame);frame=0;active=null;covered=false;previous=0;render(); }
   };
+  light.addEventListener('change', render);
   window.addEventListener('resize',resize); resize();
   window.AmenoBackground=api;
 })();

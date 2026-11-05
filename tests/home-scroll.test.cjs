@@ -1,5 +1,6 @@
+function loadClassic(name) { const module = {exports:{}}; new Function('module', require('node:fs').readFileSync(__dirname+'/../public/'+name,'utf8'))(module); return module.exports; }
 const assert = require('node:assert/strict');
-const {projectTransition, groupProjectRows, wrapCarousel} = require('./scroll.js');
+const {projectTransition, groupProjectRows, wrapCarousel} = loadClassic('scroll.js');
 assert.equal(projectTransition(-10, 800, false), 0);
 assert.equal(projectTransition(400, 800, false), .5);
 assert.equal(projectTransition(800, 800, false), 1);
