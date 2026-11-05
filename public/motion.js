@@ -130,6 +130,7 @@
       catch { /* A failed font keeps the role sequence intact with a serif fallback. */ }
     }),
     document.fonts.load('27px "Noto Sans Runic"','ᚠᚢᚦ').catch(()=>{}),
+    document.fonts.load('400 30px "Pretendard"', 'Fun-driven developer designer composer artist project manager And…?').catch(()=>{}),
     background.ready
   ]).then(()=>{ready=true;applyFont(roleIndex);sync();});
 })();

@@ -6,10 +6,13 @@
   <meta name="color-scheme" content="dark light">
   <title>AmenoRica</title>
   <meta name="description" content="Fun-driven developer, designer, composer, artist, and project manager. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
+  <script>document.documentElement.classList.add('font-loading');</script>
+  <script src="/font-ready.js" onerror="document.documentElement.classList.remove('font-loading')" defer></script>
+  <link rel="preload" href="/assets/fonts/pretendard/latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://ameno.cc/">
-  <link rel="preload" href="assets/fonts/ibm-plex-mono.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="assets/fonts.css?v=logo-subsets">
-  <link rel="stylesheet" href="style.css?v=blog-shortcut">
+  <link rel="preload" href="assets/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=font-loading">
+  <link rel="stylesheet" href="style.css?v=font-loading">
   <script src="patterns.js" defer></script>
   <script src="background.js?v=viewport-paint" defer></script>
   <script src="motion.js" defer></script>
@@ -30,9 +33,9 @@
   <section class="hero" aria-label="Introduction">
     <div class="home-shortcuts">
       <a class="contact-shortcut" href="#contact">Contact &amp; Links <span aria-hidden="true">↘</span></a>
-      <a class="blog-shortcut" href="/blog/" aria-label="Blog"><span><span class="blog-muted">we</span>B<span class="blog-muted">*</span>log</span> <span aria-hidden="true">↗</span></a>
+      <a class="blog-shortcut" href="/blog/" aria-label="Blog"><span><span class="blog-muted">we</span>B<span class="blog-muted">*</span>LOG</span> <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="identity">
+    <div class="identity" data-fonts="400 30px &quot;IBM Plex Mono&quot;|400 30px &quot;DM Sans&quot;|400 30px &quot;Instrument Serif&quot;|400 30px &quot;Cormorant Garamond&quot;|400 30px &quot;Syne&quot;|400 30px &quot;Space Grotesk&quot;|400 30px &quot;Unbounded&quot;|400 30px &quot;Bodoni Moda&quot;|400 30px &quot;Italiana&quot;|400 30px &quot;Playfair Display&quot;|400 30px &quot;Pretendard&quot;">
       <h1 aria-label="AmenoRica"><span class="name-frame" aria-hidden="true"><span class="name-measure" style="font-family: 'Instrument Serif'">AmenoRica</span><span class="name-measure" style="font-family: 'DM Sans'">AmenoRica</span><span class="name-measure" style="font-family: 'Cormorant Garamond'">AmenoRica</span><span class="name-measure" style="font-family: 'Space Grotesk'">AmenoRica</span><span class="name-measure" style="font-family: 'Bodoni Moda'">AmenoRica</span><span class="name-measure" style="font-family: 'IBM Plex Mono'">AmenoRica</span><span class="name-measure" style="font-family: 'Italiana'">AmenoRica</span><span class="name-measure" style="font-family: 'Syne'">AmenoRica</span><span class="name-measure" style="font-family: 'Playfair Display'">AmenoRica</span><span class="name-measure" style="font-family: 'Unbounded'">AmenoRica</span><span class="name-text">AmenoRica</span></span></h1>
       <p class="tagline" aria-label="Fun-driven developer, designer, composer, artist, and project manager">
         <span class="tagline-prefix" aria-hidden="true">Fun-driven</span>
@@ -67,7 +70,7 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
   <section class="contact-screen" id="contact" aria-labelledby="contact-heading" tabindex="-1">
     <div class="contact-content">
       <h2 id="contact-heading">Contact &amp; Links</h2>
-      <p class="contact-invitation">Let’s make something fun.</p>
+      <p class="contact-invitation" data-fonts="400 30px &quot;Pretendard&quot;">Let’s make something fun.</p>
       <p class="contact-note" lang="ko">아무 이유 없이 연락 주세요 :)</p>
       <ul class="contact-links">
         <li><a href="mailto:contact@ameno.cc"><span><span class="contact-service">Email</span><span class="contact-address">contact@ameno.cc</span></span><span aria-hidden="true">↗</span></a></li>
@@ -83,7 +86,7 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
     </div>
   </section>
   </main>
-  <nav class="project-dock" aria-label="Projects">
+  <nav data-fonts="400 30px &quot;AmenoFuri Logo&quot;|400 30px &quot;ugcatalog Logo&quot;|400 30px &quot;Bukichi Logo&quot;|400 30px &quot;Fan Site Syne&quot;|400 30px &quot;Super Beatpop&quot;" class="project-dock" aria-label="Projects">
     <div class="project-mark"><a class="amenofuri-link" href="#about-amenofuri" aria-label="AmenoFuri"><span class="amenofuri-logo" aria-hidden="true">Ameno<span class="amenofuri-signature">Furi</span></span></a></div>
     <div class="project-mark"><fieldset class="project-links">
       <legend class="fan-site-label"><span>Splatoon<small>Fan Sites</small></span></legend>

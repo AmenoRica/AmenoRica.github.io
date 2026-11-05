@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 async function setup(reduce=false,failFonts=false) {
-  const intervals=new Map(); let id=0;
+  const intervals=new Map(), fontRequests=[]; let id=0;
   const listeners={};
   function textNode(textContent) { const classes=new Set();return {textContent,classes,classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}}; }
   const title={style:{}}, name=textNode('AmenoRica'), roleText=textNode('developer'), tagline=textNode(''),outro=textNode('');
@@ -11,7 +11,7 @@ async function setup(reduce=false,failFonts=false) {
   const media={matches:reduce,addEventListener:(_,f)=>listeners.media=f};
   const painted=[];
   const background={ready:Promise.resolve(),busy:false,paused:false,start(role){assert(!this.busy);this.busy=true;painted.push({role,font:title.style.fontFamily,name:name.textContent,text:roleText.textContent});},setPaused(v){this.paused=v;},flood(){assert.equal(outro.textContent,'And…?');assert.equal(painted.length%5,0);this.busy=true;this.flooding=true;},reveal(){this.covered=false;},cancel(){this.busy=false;this.flooding=false;this.covered=false;}};
-  const document={hidden:false,querySelector:s=>({'h1':title,'.name-text':name,'.role-text':roleText,'.tagline':tagline,'.outro-text':outro,'.motion-control':control}[s]),querySelectorAll:()=>roles.map(textContent=>({textContent})),addEventListener:(_,f)=>listeners.visibility=f,fonts:{load:async()=>{if(failFonts)throw Error('missing');return [{}];}}};
+  const document={hidden:false,querySelector:s=>({'h1':title,'.name-text':name,'.role-text':roleText,'.tagline':tagline,'.outro-text':outro,'.motion-control':control}[s]),querySelectorAll:()=>roles.map(textContent=>({textContent})),addEventListener:(_,f)=>listeners.visibility=f,fonts:{load:async(font,text)=>{fontRequests.push({font,text});if(failFonts)throw Error('missing');return [{}];}}};
   vm.runInNewContext(fs.readFileSync(__dirname+'/../public/motion.js','utf8'),{document,window:{AmenoBackground:background},matchMedia:()=>media,setInterval:fn=>{intervals.set(++id,fn);return id;},clearInterval:id=>intervals.delete(id)});
   await new Promise(setImmediate);
   const step=()=>{
@@ -20,10 +20,11 @@ async function setup(reduce=false,failFonts=false) {
     assert(!(name.textContent!==oldName && roleText.textContent!==oldRole),'No simultaneous typing');
     assert([name,roleText,outro].filter(node=>node.classes.has('typing')).length<=1,'Only one cursor, including the ending');
   };
-  return {intervals,listeners,title,name,roleText,outro,tagline,roles,control,media,document,background,painted,step};
+  return {fontRequests,intervals,listeners,title,name,roleText,outro,tagline,roles,control,media,document,background,painted,step};
 }
 (async()=>{
   const x=await setup();
+  assert(x.fontRequests.some(({font,text})=>font.includes("Pretendard") && text.includes("Fun-driven") && text.includes("project manager")));
   const fonts=['IBM Plex Mono','DM Sans','Instrument Serif','Cormorant Garamond','Syne','Space Grotesk','Unbounded','Bodoni Moda','Italiana','Playfair Display'];
   for(let cycle=0;cycle<10;cycle++){
     for(let n=0;n<350;n++) {

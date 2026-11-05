@@ -14,19 +14,23 @@ const modified = lastModified(post.filePath, post.data.createdAt);
 <html lang="ko">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex"><title>{post.data.title} — AmenoRica</title>
+<script is:inline>document.documentElement.classList.add('font-loading');</script>
+  <script is:inline src="/font-ready.js" onerror="document.documentElement.classList.remove('font-loading')" defer></script>
+  <link rel="preload" href="/assets/fonts/pretendard/latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="robots" content="noindex"><title>{post.data.title.replace(/\s*[\r\n]+\s*/g, " ")} — AmenoRica</title>
 <script is:inline src="../theme-preference.js"></script>
-<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/fonts.css?v=font-loading">
 <link rel="stylesheet" href="/blog/article.css"><link rel="stylesheet" href="/blog/logos.css"><script is:inline src="/blog/brand.js" defer></script>
 <script is:inline type="module">import { createTheme } from "../theme-mode.mjs"; createTheme();</script>
+<link rel="preload" href="/assets/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body id="top">
 <a class="skip" href="#article">본문으로 건너뛰기</a>
-<nav aria-label="주 메뉴"><div class="brand-group"><a class="brand" href="../" aria-label="AmenoRica"><span aria-hidden="true">AmenoRica</span></a></div><a class="nav-label" href="../">← List</a></nav>
-<main class="layout">
+<nav aria-label="주 메뉴"><div class="brand-group"><a data-fonts="400 30px &quot;IBM Plex Mono&quot;|400 30px &quot;DM Sans&quot;|400 30px &quot;Instrument Serif&quot;|400 30px &quot;Cormorant Garamond&quot;|400 30px &quot;Syne&quot;|400 30px &quot;Space Grotesk&quot;|400 30px &quot;Unbounded&quot;|400 30px &quot;Bodoni Moda&quot;|400 30px &quot;Italiana&quot;|400 30px &quot;Playfair Display&quot;" class="brand" href="../" aria-label="AmenoRica"><span aria-hidden="true">AmenoRica</span></a></div><a class="nav-label" href="../">← List</a></nav>
+<main class="layout" data-fonts="400 30px &quot;Pretendard&quot;|400 30px &quot;Blog Bodoni&quot;|400 30px &quot;AmenoFuri Logo&quot;|400 30px &quot;ugcatalog Logo&quot;|400 30px &quot;Bukichi Logo&quot;|400 30px &quot;Super Beatpop&quot;">
 <aside aria-label="글 정보"><Logo category={category} /><time datetime={post.data.createdAt} aria-label="첫 작성일">{displayDate(post.data.createdAt)}</time>{modified && <p class="modified"><time datetime={modified}>{displayDate(modified)}.에 마지막 수정</time></p>}</aside>
 <article id="article" lang="ko">
-<header class="article-head"><h1>{post.data.title}</h1>{post.data.subtitle && <p class="intro">{post.data.subtitle}</p>}</header>
+<header class="article-head"><h1>{post.data.title.split(/\r\n?|\n/).map((line, index) => <>{index > 0 && <br />}{line}</>)}</h1>{post.data.subtitle && <p class="intro">{post.data.subtitle}</p>}</header>
 <div class="body"><Content /></div>
 <div class="end"><a href="../">← List</a><a href="#top">Top ↑</a></div>
 </article>

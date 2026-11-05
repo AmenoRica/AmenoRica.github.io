@@ -29,7 +29,7 @@ nav a:focus-visible { transform: translateY(-2px); opacity: .8; }
 @keyframes cursor-blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .name-text::after, .role-text::after { content: none; animation: none; } }
 
-@font-face { font-family: 'Noto Sans Runic'; src: url('assets/fonts/noto-sans-runic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Noto Sans Runic'; src: url('assets/fonts/noto-sans-runic.woff2') format('woff2'); font-display: block; }
 .pattern-field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: calc(var(--pattern-opacity, .7) * var(--pattern-strength)); }
 
 .ink-curtain { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
@@ -43,7 +43,7 @@ nav a:focus-visible { transform: translateY(-2px); opacity: .8; }
 /* Match the space in the single-string ending so swapping text layers never shifts the role. */
 .tagline-prefix::after { content: " "; white-space: pre; }
 
-@font-face { font-family: 'AmenoFuri Logo'; src: url('assets/fonts/amenofuri-logo.ttf?v=subset') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'AmenoFuri Logo'; src: url('assets/fonts/amenofuri-logo.woff2') format('woff2'); font-weight: 400; font-display: block; }
 .amenofuri-logo { font: 400 34px/1.05 'AmenoFuri Logo', serif; letter-spacing: -.055em; white-space: nowrap; }
 .amenofuri-signature { position: relative; }
 .amenofuri-signature::before { content: ''; position: absolute; left: 0; right: .055em; top: .02em; height: .075em; background: #5bcefa; }
@@ -56,10 +56,10 @@ nav a:focus-visible { transform: translateY(-2px); opacity: .8; }
 .fan-site-squid { display: block; position: relative; width: 110px; height: 37px; margin: -8px auto 6px; object-fit: contain; }
 .fan-site-label span { position: relative; z-index: 1; display: block; font: 800 18px/1 'Fan Site Syne', sans-serif; letter-spacing: -.04em; }
 .fan-site-label small { display: block; margin-top: 2px; font-size: 10px; line-height: 1.2; letter-spacing: .04em; }
-@font-face { font-family: 'Fan Site Syne'; src: url('assets/fonts/fan-site-syne.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'Fan Site Syne'; src: url('assets/fonts/fan-site-syne.woff2') format('woff2'); font-weight: 800; font-display: block; }
 
-@font-face { font-family: 'ugcatalog Logo'; src: url('assets/fonts/ugcatalog-logo.ttf') format('truetype'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Bukichi Logo'; src: url('assets/fonts/bukichi-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'ugcatalog Logo'; src: url('assets/fonts/ugcatalog-logo.woff2') format('woff2'); font-weight: 700; font-display: block; }
+@font-face { font-family: 'Bukichi Logo'; src: url('assets/fonts/bukichi-logo.woff2') format('woff2'); font-weight: 400; font-display: block; }
 .project-links .ugcatalog-link { font: 700 23px/24px 'ugcatalog Logo', serif; letter-spacing: -.055em; }
 .project-links .bukichi-link { font: 400 21px/24px 'Bukichi Logo', serif; letter-spacing: .015em; }
 

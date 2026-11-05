@@ -18,8 +18,8 @@ content:
       order: desc
     fields:
       - name: title
-        label: 제목
-        type: string
+        label: 제목 (Enter로 본문 제목 줄바꿈)
+        type: text
         required: true
       - name: subtitle
         label: 부제목

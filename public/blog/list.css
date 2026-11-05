@@ -1,5 +1,5 @@
 
-    @font-face { font-family: 'Blog Bodoni'; src: url('/assets/fonts/blog-bodoni-moda.ttf') format('truetype'); font-weight: 400 900; font-style: normal; font-display: block; }
+    @font-face { font-family: 'Blog Bodoni'; src: url('/assets/fonts/blog-bodoni-moda.woff2') format('woff2'); font-weight: 400 900; font-style: normal; font-display: block; }
     * { box-sizing: border-box; }
     html { color-scheme: light; --background: #fff; --ink: #000; background: var(--background); color: var(--ink); }
     @media(prefers-color-scheme: dark) { html:not([data-theme="light"]) { color-scheme: dark; --background: #000; --ink: #fff; } }
@@ -20,22 +20,22 @@
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .keyboard-controls button:focus-visible { position: fixed; top: 12px; left: 12px; width: auto; height: auto; clip-path: none; margin: 0; padding: 8px 12px; background: var(--background); color: var(--ink); border: 1px solid currentColor; z-index: 3; }
     @media(max-width: 600px) { .hanging-title { height: 330px; } }
-    @font-face { font-family: 'AmenoFuri Logo'; src: url('/assets/fonts/amenofuri-logo.ttf') format('truetype'); font-display: swap; }
-    @font-face { font-family: 'ugcatalog Logo'; src: url('/assets/fonts/ugcatalog-logo.ttf') format('truetype'); font-weight: 700; font-display: swap; }
-    @font-face { font-family: 'Bukichi Logo'; src: url('/assets/fonts/bukichi-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'AmenoFuri Logo'; src: url('/assets/fonts/amenofuri-logo.woff2') format('woff2'); font-display: block; }
+    @font-face { font-family: 'ugcatalog Logo'; src: url('/assets/fonts/ugcatalog-logo.woff2') format('woff2'); font-weight: 700; font-display: block; }
+    @font-face { font-family: 'Bukichi Logo'; src: url('/assets/fonts/bukichi-logo.woff2') format('woff2'); font-weight: 400; font-display: block; }
     .articles { max-width: 1060px; margin: 0 auto; padding: 0 40px 140px; font-family: Pretendard, sans-serif; }
     .articles ol { display: grid; gap: 44px; list-style: none; margin: 0; padding: 0; scroll-margin-top: 28px; outline: none; }
     .page-gap { display: grid; place-items: center; font-size: 36px; font-weight: 700; letter-spacing: .3em; color: var(--ink); }
     .page-gap[hidden] { display: none; }
-    .category-picker { display: flex; align-items: center; gap: 20px; min-height: 64px; margin-bottom: 36px; }
+    .category-picker { display: flex; align-items: center; gap: 20px; height: 64px; margin-bottom: 36px; }
     .category-picker button { border: 0; background: transparent; color: inherit; cursor: pointer; min-height: 44px; }
     .category-picker .category-trigger { display: flex; justify-content: space-between; align-items: center; flex: 0 0 130px; padding: 8px 0; text-align: left; font: 14px/1.35 Pretendard, sans-serif; }
     .category-trigger .arrow { margin-left: 10px; transition: transform .18s; }
     .category-trigger[aria-expanded="true"] .arrow { transform: rotate(180deg); }
-    .category-options { display: flex; align-items: center; gap: 28px; flex: 1; min-width: 0; overflow-x: auto; padding: 8px 4px; }
+    .category-options { display: flex; align-items: center; gap: 28px; flex: 1; min-width: 0; height: 100%; overflow-x: auto; padding: 0 4px; }
     .category-options[hidden] { display: none; }
     .category-options:not([hidden]) { animation: unfold-right .4s ease-out; }
-    .category-options button { flex: 0 0 auto; padding: 8px 4px; }
+    .category-options button { flex: 0 0 auto; padding: 4px; }
     .category-options button[aria-pressed="true"] { box-shadow: inset 0 -1px currentColor; }
     .category-picker button:hover { opacity: .65; }
     .category-picker button:focus-visible { outline: 1px solid currentColor; outline-offset: -1px; }

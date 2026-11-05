@@ -260,7 +260,7 @@ function drawEffects() {
     fx.fillStyle = p.color; fx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * .5 * Math.cos(p.angle)); fx.restore();
   }
 }
-await document.fonts.load('112px "Blog Bodoni"');
+await document.fonts.load('112px "Blog Bodoni"', 'weB*LOG').catch(() => {});
 resize();
 new ResizeObserver(() => resize()).observe(canvas);
 syncMotion();

@@ -1,7 +1,7 @@
-    @font-face { font-family: 'Blog Bodoni'; src: url('/assets/fonts/blog-bodoni-moda.ttf') format('truetype'); font-weight: 400 900; font-style: normal; font-display: block; }
-    @font-face { font-family: 'AmenoFuri Logo'; src: url('/assets/fonts/amenofuri-logo.ttf') format('truetype'); font-display: swap; }
-    @font-face { font-family: 'ugcatalog Logo'; src: url('/assets/fonts/ugcatalog-logo.ttf') format('truetype'); font-weight: 700; font-display: swap; }
-    @font-face { font-family: 'Bukichi Logo'; src: url('/assets/fonts/bukichi-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Blog Bodoni'; src: url('/assets/fonts/blog-bodoni-moda.woff2') format('woff2'); font-weight: 400 900; font-style: normal; font-display: block; }
+    @font-face { font-family: 'AmenoFuri Logo'; src: url('/assets/fonts/amenofuri-logo.woff2') format('woff2'); font-display: block; }
+    @font-face { font-family: 'ugcatalog Logo'; src: url('/assets/fonts/ugcatalog-logo.woff2') format('woff2'); font-weight: 700; font-display: block; }
+    @font-face { font-family: 'Bukichi Logo'; src: url('/assets/fonts/bukichi-logo.woff2') format('woff2'); font-weight: 400; font-display: block; }
     .post-logo { font: 28px/1.1 'AmenoFuri Logo', serif; letter-spacing: -.055em; white-space: nowrap; }
     .post-logo.ugcatalog { font: 700 23px/1.1 'ugcatalog Logo', serif; letter-spacing: -.055em; }
     .post-logo.bukichi { font: 400 21px/1.1 'Bukichi Logo', serif; letter-spacing: .015em; }

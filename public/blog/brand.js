@@ -3,11 +3,11 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const fonts = ['IBM Plex Mono', 'DM Sans', 'Instrument Serif', 'Cormorant Garamond', 'Syne', 'Space Grotesk', 'Unbounded', 'Bodoni Moda', 'Italiana', 'Playfair Display'];
   const full = 'AmenoRica';
-  let index = 0, deleting = true, timer;
+  let index = 0, deleting = true, timer, ready = false;
   function schedule(delay = 2200) {
     clearTimeout(timer);
     name.classList.remove('typing');
-    if (!reduced.matches && !document.hidden) timer = setTimeout(tick, delay);
+    if (ready && !reduced.matches && !document.hidden) timer = setTimeout(tick, delay);
   }
   function tick() {
     name.classList.add('typing');
@@ -30,5 +30,5 @@
     deleting = true;
     schedule();
   });
-  schedule();
+  Promise.allSettled(fonts.map(font => document.fonts.load(`400 32px "${font}"`, full))).then(() => { ready = true; schedule(); });
 })();

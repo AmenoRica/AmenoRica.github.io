@@ -10,16 +10,20 @@ const categories = (await getCollection('categories')).sort((a,b) => a.data.orde
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
+  <script is:inline>document.documentElement.classList.add('font-loading');</script>
+  <script is:inline src="/font-ready.js" onerror="document.documentElement.classList.remove('font-loading')" defer></script>
+  <link rel="preload" href="/assets/fonts/pretendard/latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="robots" content="noindex">
   <title>weB*LOG — AmenoRica</title>
   <script is:inline src="theme-preference.js"></script>
-  <link rel="stylesheet" href="../assets/fonts.css">
+  <link rel="stylesheet" href="../assets/fonts.css?v=font-loading">
   <link rel="stylesheet" href="/blog/list.css">
   <script is:inline type="module" src="hanging-title.js"></script>
   <script is:inline src="pagination.js" defer></script>
+<link rel="preload" href="/assets/fonts/blog-bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
-  <a class="home-brand" href="../" aria-label="AmenoRica 홈페이지">AmenoRica</a>
+  <a data-fonts="400 30px &quot;Instrument Serif&quot;" class="home-brand" href="../" aria-label="AmenoRica 홈페이지">AmenoRica</a>
   <main>
     <h1 class="sr-only">weB*LOG</h1>
     <div class="hanging-title">
@@ -28,7 +32,7 @@ const categories = (await getCollection('categories')).sort((a,b) => a.data.orde
         <button class="sr-only">w 흔들기</button><button class="sr-only">e 흔들기</button><button class="sr-only">B 흔들기</button><button class="sr-only">별표 이스터에그: 테마 전환</button><button class="sr-only">L 흔들기</button><button class="sr-only">O 흔들기</button><button class="sr-only">G 흔들기</button>
       </div>
     </div>
-    <section class="articles" aria-label="블로그 글 목록">
+    <section data-fonts="400 30px &quot;Pretendard&quot;|400 30px &quot;Blog Bodoni&quot;|400 30px &quot;AmenoFuri Logo&quot;|400 30px &quot;ugcatalog Logo&quot;|400 30px &quot;Bukichi Logo&quot;|400 30px &quot;Super Beatpop&quot;" class="articles" aria-label="블로그 글 목록">
       <div class="category-picker">
         <button class="category-trigger" type="button" aria-expanded="false" aria-controls="category-options" aria-label="카테고리 선택, 현재 필터 없음"><span class="category-label">Select<br>Category</span><span class="arrow" aria-hidden="true">›</span></button>
         <div class="category-options" id="category-options" role="group" aria-label="프로젝트 카테고리" hidden>
@@ -40,7 +44,7 @@ const categories = (await getCollection('categories')).sort((a,b) => a.data.orde
       <ol id="article-page" tabindex="-1">
         {posts.map(post => <li data-category={post.data.category.id}><article class="post">
           <div class="post-meta"><time datetime={post.data.createdAt}>{displayDate(post.data.createdAt)}</time><Logo category={categories.find(category => category.id === post.data.category.id)} /></div>
-          <div class="post-copy"><h2><a class="post-title-link" href={`/blog/${post.id}/`}>{post.data.title}</a></h2>{post.data.subtitle && <p class="post-subtitle">{post.data.subtitle}</p>}</div>
+          <div class="post-copy"><h2><a class="post-title-link" href={`/blog/${post.id}/`}>{post.data.title.replace(/\s*[\r\n]+\s*/g, " ")}</a></h2>{post.data.subtitle && <p class="post-subtitle">{post.data.subtitle}</p>}</div>
         </article></li>)}
       </ol>
       </div>

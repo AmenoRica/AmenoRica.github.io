@@ -2,73 +2,160 @@
   font-family: 'Bodoni Moda';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/bodoni-moda.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/bodoni-moda.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/cormorant-garamond.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/cormorant-garamond.woff2) format('woff2');
 }
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/dm-sans.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/dm-sans.woff2) format('woff2');
 }
 @font-face {
   font-family: 'IBM Plex Mono';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/ibm-plex-mono.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/ibm-plex-mono.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Instrument Serif';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/instrument-serif.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/instrument-serif.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Italiana';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/italiana.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/italiana.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Playfair Display';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/playfair-display.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/playfair-display.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/space-grotesk.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/space-grotesk.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Syne';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/syne.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/syne.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Unbounded';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url(./fonts/unbounded.ttf) format('truetype');
+  font-display: block;
+  src: url(./fonts/unbounded.woff2) format('woff2');
 }
 
-@font-face { font-family: 'Super Beatpop'; font-style: normal; font-weight: 400; font-display: swap; src: url('./fonts/super-beatpop.ttf?v=subset') format('truetype'); }
+@font-face { font-family: 'Super Beatpop'; font-style: normal; font-weight: 400; font-display: block; src: url('./fonts/super-beatpop.woff2') format('woff2'); }
 
-@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('./fonts/pretendard-variable.woff2') format('woff2'); }
+
+
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/latin.woff2') format('woff2'); unicode-range: U+0-FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0001.woff2') format('woff2'); unicode-range: U+100-1FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0002.woff2') format('woff2'); unicode-range: U+200-2FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0003.woff2') format('woff2'); unicode-range: U+300-3FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0004.woff2') format('woff2'); unicode-range: U+400-4FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0005.woff2') format('woff2'); unicode-range: U+500-5FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/000e.woff2') format('woff2'); unicode-range: U+E00-EFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/001d.woff2') format('woff2'); unicode-range: U+1D00-1DFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/001e.woff2') format('woff2'); unicode-range: U+1E00-1EFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/001f.woff2') format('woff2'); unicode-range: U+1F00-1FFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0020.woff2') format('woff2'); unicode-range: U+2000-20FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0021.woff2') format('woff2'); unicode-range: U+2100-21FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0022.woff2') format('woff2'); unicode-range: U+2200-22FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0023.woff2') format('woff2'); unicode-range: U+2300-23FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0024.woff2') format('woff2'); unicode-range: U+2400-24FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0025.woff2') format('woff2'); unicode-range: U+2500-25FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0026.woff2') format('woff2'); unicode-range: U+2600-26FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0027.woff2') format('woff2'); unicode-range: U+2700-27FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0029.woff2') format('woff2'); unicode-range: U+2900-29FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/002b.woff2') format('woff2'); unicode-range: U+2B00-2BFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/002c.woff2') format('woff2'); unicode-range: U+2C00-2CFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/002d.woff2') format('woff2'); unicode-range: U+2D00-2DFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/002e.woff2') format('woff2'); unicode-range: U+2E00-2EFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0030.woff2') format('woff2'); unicode-range: U+3000-30FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0031.woff2') format('woff2'); unicode-range: U+3100-31FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0032.woff2') format('woff2'); unicode-range: U+3200-32FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0033.woff2') format('woff2'); unicode-range: U+3300-33FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00a6.woff2') format('woff2'); unicode-range: U+A600-A6FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00a7.woff2') format('woff2'); unicode-range: U+A700-A7FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00a9.woff2') format('woff2'); unicode-range: U+A900-A9FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ac.woff2') format('woff2'); unicode-range: U+AC00-ACFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ad.woff2') format('woff2'); unicode-range: U+AD00-ADFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ae.woff2') format('woff2'); unicode-range: U+AE00-AEFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00af.woff2') format('woff2'); unicode-range: U+AF00-AFFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b0.woff2') format('woff2'); unicode-range: U+B000-B0FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b1.woff2') format('woff2'); unicode-range: U+B100-B1FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b2.woff2') format('woff2'); unicode-range: U+B200-B2FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b3.woff2') format('woff2'); unicode-range: U+B300-B3FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b4.woff2') format('woff2'); unicode-range: U+B400-B4FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b5.woff2') format('woff2'); unicode-range: U+B500-B5FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b6.woff2') format('woff2'); unicode-range: U+B600-B6FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b7.woff2') format('woff2'); unicode-range: U+B700-B7FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b8.woff2') format('woff2'); unicode-range: U+B800-B8FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00b9.woff2') format('woff2'); unicode-range: U+B900-B9FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ba.woff2') format('woff2'); unicode-range: U+BA00-BAFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00bb.woff2') format('woff2'); unicode-range: U+BB00-BBFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00bc.woff2') format('woff2'); unicode-range: U+BC00-BCFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00bd.woff2') format('woff2'); unicode-range: U+BD00-BDFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00be.woff2') format('woff2'); unicode-range: U+BE00-BEFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00bf.woff2') format('woff2'); unicode-range: U+BF00-BFFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c0.woff2') format('woff2'); unicode-range: U+C000-C0FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c1.woff2') format('woff2'); unicode-range: U+C100-C1FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c2.woff2') format('woff2'); unicode-range: U+C200-C2FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c3.woff2') format('woff2'); unicode-range: U+C300-C3FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c4.woff2') format('woff2'); unicode-range: U+C400-C4FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c5.woff2') format('woff2'); unicode-range: U+C500-C5FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c6.woff2') format('woff2'); unicode-range: U+C600-C6FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c7.woff2') format('woff2'); unicode-range: U+C700-C7FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c8.woff2') format('woff2'); unicode-range: U+C800-C8FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00c9.woff2') format('woff2'); unicode-range: U+C900-C9FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ca.woff2') format('woff2'); unicode-range: U+CA00-CAFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00cb.woff2') format('woff2'); unicode-range: U+CB00-CBFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00cc.woff2') format('woff2'); unicode-range: U+CC00-CCFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00cd.woff2') format('woff2'); unicode-range: U+CD00-CDFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ce.woff2') format('woff2'); unicode-range: U+CE00-CEFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00cf.woff2') format('woff2'); unicode-range: U+CF00-CFFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d0.woff2') format('woff2'); unicode-range: U+D000-D0FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d1.woff2') format('woff2'); unicode-range: U+D100-D1FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d2.woff2') format('woff2'); unicode-range: U+D200-D2FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d3.woff2') format('woff2'); unicode-range: U+D300-D3FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d4.woff2') format('woff2'); unicode-range: U+D400-D4FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d5.woff2') format('woff2'); unicode-range: U+D500-D5FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d6.woff2') format('woff2'); unicode-range: U+D600-D6FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00d7.woff2') format('woff2'); unicode-range: U+D700-D7FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00e0.woff2') format('woff2'); unicode-range: U+E000-E0FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00e1.woff2') format('woff2'); unicode-range: U+E100-E1FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ee.woff2') format('woff2'); unicode-range: U+EE00-EEFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00f0.woff2') format('woff2'); unicode-range: U+F000-F0FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00f6.woff2') format('woff2'); unicode-range: U+F600-F6FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00fe.woff2') format('woff2'); unicode-range: U+FE00-FEFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/00ff.woff2') format('woff2'); unicode-range: U+FF00-FFFF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/01f1.woff2') format('woff2'); unicode-range: U+1F100-1F1FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/01f8.woff2') format('woff2'); unicode-range: U+1F800-1F8FF; }
+@font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: block; src: url('./fonts/pretendard/0f00.woff2') format('woff2'); unicode-range: U+F0000-F00FF; }
+
+html.font-loading [data-fonts]:not(.fonts-ready) { visibility: hidden; }
