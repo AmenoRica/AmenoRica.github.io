@@ -43,7 +43,7 @@ nav a:focus-visible { transform: translateY(-2px); opacity: .8; }
 /* Match the space in the single-string ending so swapping text layers never shifts the role. */
 .tagline-prefix::after { content: " "; white-space: pre; }
 
-@font-face { font-family: 'AmenoFuri Logo'; src: url('assets/fonts/amenofuri-logo.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'AmenoFuri Logo'; src: url('assets/fonts/amenofuri-logo.ttf?v=subset') format('truetype'); font-weight: 400; font-display: swap; }
 .amenofuri-logo { font: 400 34px/1.05 'AmenoFuri Logo', serif; letter-spacing: -.055em; white-space: nowrap; }
 .amenofuri-signature { position: relative; }
 .amenofuri-signature::before { content: ''; position: absolute; left: 0; right: .055em; top: .02em; height: .075em; background: #5bcefa; }
@@ -128,3 +128,15 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 @media (max-width: 600px) and (prefers-reduced-motion: reduce) {
   .carousel-cell:not([data-copy="1"]) { display: none; }
 }
+
+.contact-wallet { position: relative; padding: 18px 0; font-size: 18px; overflow-wrap: anywhere; }
+.contact-wallet small { font-size: 12px; margin-left: 8px; }
+.wallet-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.contact-links .wallet-open { padding: 0; min-height: 0; }
+.wallet-address { display: block; max-width: 100%; padding: 0; border: 0; background: none; color: #fff; font-family: inherit; text-align: left; overflow-wrap: anywhere; cursor: pointer; user-select: all; }
+.wallet-address:hover { opacity: .8; }
+.wallet-address:focus-visible { outline: 1px solid #fff; outline-offset: 4px; }
+#wallet-status { position: absolute; left: 0; bottom: calc(100% - 12px); padding: 5px 9px; background: #000; font-size: 13px; pointer-events: none; opacity: 0; }
+#wallet-status.visible { opacity: 1; animation: wallet-toast 180ms ease-out; }
+@keyframes wallet-toast { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { #wallet-status.visible { animation: none; } }

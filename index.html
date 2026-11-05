@@ -8,12 +8,13 @@
   <meta name="description" content="Fun-driven developer, designer, composer, artist, and project manager. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
   <link rel="canonical" href="https://ameno.cc/">
   <link rel="preload" href="assets/fonts/ibm-plex-mono.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="assets/fonts.css?v=pretendard">
-  <link rel="stylesheet" href="style.css?v=native-snap">
+  <link rel="stylesheet" href="assets/fonts.css?v=logo-subsets">
+  <link rel="stylesheet" href="style.css?v=logo-subsets">
   <script src="patterns.js" defer></script>
   <script src="background.js" defer></script>
   <script src="motion.js" defer></script>
   <script src="scroll.js?v=native-scroll" defer></script>
+  <script src="wallet.js?v=compact" defer></script>
   <noscript><style>
     .project-dock:not(.positioned) { visibility: visible; position: absolute; inset: auto 0; top: calc(100svh - 192px); display: flex; justify-content: center; align-items: flex-end; gap: 28px; }
     .project-mark { position: static; }
@@ -68,6 +69,11 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
         <li><a href="https://x.com/S3Y_7_3RO"><span><span class="contact-service">X</span><span class="contact-address">@S3Y_7_3RO</span></span><span aria-hidden="true">↗</span></a></li>
         <li><a href="https://discord.com/users/1412777957918900227"><span><span class="contact-service">Discord</span><span class="contact-address">toukedouka</span></span><span aria-hidden="true">↗</span></a></li>
         <li><a href="https://github.com/AmenoRica"><span><span class="contact-service">GitHub</span><span class="contact-address">AmenoRica</span></span><span aria-hidden="true">↗</span></a></li>
+        <li><div class="contact-wallet">
+          <div class="wallet-heading"><span class="contact-service">ETH <small>Ethereum Mainnet</small></span><a class="wallet-open" href="ethereum:0x2E8E6C2e217D95a0b1454C96D2A22Feb1fA209dF@1" aria-label="지갑 앱에서 열기" title="지갑 앱에서 열기">↗</a></div>
+          <button class="contact-address wallet-address" id="eth-address" type="button" aria-label="ETH 주소 복사">0x2E8E6C2e217D95a0b1454C96D2A22Feb1fA209dF</button>
+          <span id="wallet-status" role="status"></span>
+        </div></li>
       </ul>
     </div>
   </section>

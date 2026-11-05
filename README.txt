@@ -124,3 +124,5 @@ Reduced motion disables automatic movement and duplicate cycles; the animation p
 Trackpad/mouse wheel navigation uses native browser scrolling with mandatory snapping at section boundaries.
 No input lockout or one-screen-per-gesture limit. Long sections scroll freely; logo morphing follows scroll position.
 Release update: Pretendard default text and native scrolling with mandatory section snapping.
+
+AmenoFuri and toys logo fonts are subset to their wordmarks (plus space). Full originals are retained in work/logo-font-originals outside the site.

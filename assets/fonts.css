@@ -69,6 +69,6 @@
   src: url(./fonts/unbounded.ttf) format('truetype');
 }
 
-@font-face { font-family: 'Super Beatpop'; font-style: normal; font-weight: 400; font-display: swap; src: url('./fonts/super-beatpop.ttf') format('truetype'); }
+@font-face { font-family: 'Super Beatpop'; font-style: normal; font-weight: 400; font-display: swap; src: url('./fonts/super-beatpop.ttf?v=subset') format('truetype'); }
 
 @font-face { font-family: 'Pretendard'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('./fonts/pretendard-variable.woff2') format('woff2'); }
