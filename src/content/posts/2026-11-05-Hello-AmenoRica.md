@@ -1,5 +1,7 @@
 ---
-title: AI와 함께하는 시대에서 개인 블로그를 만들다.
+title: |-
+  AI와 함께하는 시대에서
+  개인 블로그를 만들다.
 subtitle: Slop과 함께 춤을.
 createdAt: 2026-11-05
 category: amenorica
