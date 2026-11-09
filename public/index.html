@@ -31,21 +31,24 @@
   <button class="theme-toggle" type="button" aria-label="라이트 모드" aria-pressed="false" hidden>◐ Light</button>
   <button class="motion-control" type="button" hidden aria-pressed="false">Pause animation</button>
   <main>
-  <section class="hero" aria-label="Introduction">
+  <section class="hero" id="top" aria-label="Introduction" tabindex="-1">
     <p id="fallback" class="mobile-fallback" hidden>3D 배경을 표시할 수 없습니다.</p>
-    <div class="home-shortcuts">
-      <a class="contact-shortcut" href="#contact">Contact &amp; Links <span aria-hidden="true">↘</span></a>
-      <a class="blog-shortcut" href="/blog/" aria-label="Blog"><span><span class="blog-muted">we</span>B<span class="blog-muted">*</span>LOG</span> <span aria-hidden="true">↗</span></a>
-    </div>
+    <div class="identity-group">
     <div class="identity" data-fonts="400 30px &quot;Barlow Semi Condensed&quot;">
       <svg class="identity-rule" viewBox="0 0 17.5 100" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="20" width="1" height="60"/><rect x="5.5" y="0" width="1" height="100"/><rect x="11" y="40" width="1" height="60"/><rect x="16.5" y="60" width="1" height="40"/></svg>
       <h1 aria-label="AmenoRica"><span class="name-frame" aria-hidden="true"><span class="name-measure" style="font-family: 'Barlow Semi Condensed'; font-kerning: none">AmenoRica</span><span class="name-text"><span class="name-letter">A</span><span class="name-letter">m</span><span class="name-letter">e</span><span class="name-letter">n</span><span class="name-letter">o</span><span class="name-letter">R</span><span class="name-letter">i</span><span class="name-letter">c</span><span class="name-letter">a</span></span></span></h1>
       <p class="tagline">Driven by catchiness</p>
     </div>
+      <nav class="home-shortcuts" aria-label="Main navigation">
+        <a class="blog-shortcut" href="/blog/">Blog <span aria-hidden="true">→</span></a>
+        <a class="contact-shortcut" href="#contact">Contact <span aria-hidden="true">→</span></a>
+      </nav>
+    </div>
     <p class="project-caption">Catch what I make</p>
+    <a class="scroll-cue" href="#projects" aria-label="프로젝트 설명으로 내려가기"><span aria-hidden="true"></span></a>
     <div class="home-dock"><span class="home-slot" aria-hidden="true"></span><span class="home-slot" aria-hidden="true"></span><span class="home-slot home-toys-slot" aria-hidden="true"></span></div>
   </section>
-  <section class="projects-screen" aria-label="About the projects">
+  <section id="projects" class="projects-screen" aria-label="About the projects">
     <div class="project-row">
       <div class="project-slot" aria-hidden="true"></div>
       <article class="project-description" aria-labelledby="about-amenofuri"><div class="project-heading"><h2 id="about-amenofuri" tabindex="-1">AmenoFuri</h2><a class="project-visit" href="https://furi.ameno.cc/" aria-label="AmenoFuri 사이트 바로가기" lang="ko">바로가기 <span aria-hidden="true">↗</span></a></div><p lang="ko" data-description="amenofuri">AmenoFuri는 비는 오지 않지만, 당장이라도 비가 내리는 듯한 감각, 코끝을 간지럽히는 비 냄새와 서늘하게 불어오는 바람. 살결을 스쳐가는 습기. 그 순간의 감각을 의미합니다.
@@ -80,6 +83,7 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
           <span id="wallet-status" role="status"></span>
         </div></li>
       </ul>
+      <a class="back-to-top" href="#top">맨 위로 <span aria-hidden="true">↑</span></a>
     </div>
   <footer class="site-credits"><a href="mobile-credits.html">3D models &amp; artwork credits ↗</a></footer>
   </section>

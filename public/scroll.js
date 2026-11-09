@@ -34,6 +34,47 @@ if (typeof document !== 'undefined') (() => {
   });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const narrow = matchMedia('(max-width: 600px)');
+  let stopTravel = () => {};
+  document.querySelectorAll('.contact-shortcut, .back-to-top').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reduced.matches) return;
+      const target = document.querySelector(link.hash);
+      if (!target) return;
+      event.preventDefault();
+      stopTravel();
+      const startY = window.scrollY;
+      const endY = Math.min(target.getBoundingClientRect().top + startY, document.documentElement.scrollHeight - window.innerHeight);
+      const started = performance.now();
+      let travelFrame;
+      const finish = () => {
+        cancelAnimationFrame(travelFrame);
+        document.documentElement.classList.remove('section-travel');
+        window.removeEventListener('wheel', cancel);
+        window.removeEventListener('touchstart', cancel);
+        window.removeEventListener('keydown', cancel);
+        stopTravel = () => {};
+      };
+      const cancel = () => finish();
+      stopTravel = finish;
+      document.documentElement.classList.add('section-travel');
+      window.addEventListener('wheel', cancel, { passive: true });
+      window.addEventListener('touchstart', cancel, { passive: true });
+      window.addEventListener('keydown', cancel);
+      function step(now) {
+        const progress = Math.min(1, (now - started) / 1200);
+        const eased = progress * progress * (3 - 2 * progress);
+        window.scrollTo(0, startY + (endY - startY) * eased);
+        if (progress < 1) travelFrame = requestAnimationFrame(step);
+        else {
+          history.pushState(null, '', link.hash);
+          target.focus({ preventScroll: true });
+          finish();
+        }
+      }
+      travelFrame = requestAnimationFrame(step);
+    });
+  });
+
   const carousel = document.createElement('nav');
   carousel.className = 'home-carousel';
   carousel.setAttribute('aria-label', 'Projects — 가로 스크롤');
