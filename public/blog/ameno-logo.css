@@ -1,0 +1,8 @@
+/* One proportion for the compact, slogan-free AmenoRica mark. */
+.home-brand, .brand, .post-logo.amenorica {
+  display: inline-flex; align-items: center; gap: .215385em; width: max-content; height: auto;
+  font: 400 28px/1.1 'Barlow Semi Condensed', sans-serif; letter-spacing: -.055em;
+  white-space: nowrap; text-decoration: none;
+}
+.ameno-rule { display: block; flex: none; width: .384615em; height: 1.1em; fill: currentColor; }
+.home-brand { font-size: 23px; }

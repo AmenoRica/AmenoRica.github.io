@@ -1,0 +1,40 @@
+{
+  "Title": "Squid",
+  "Description": "#sea #ocean #underwater #creature #mollusk #tentacles",
+  "UploadDate": "2017-09-29T02:13:35.117Z",
+  "ResourceID": "3bc4b003-d0b1-455b-aa66-c2c4c79bbd9f",
+  "PublicID": "6ar_2XbrzCp",
+  "Likes": 1,
+  "CommentCount": 0,
+  "Tris": 608,
+  "Views": 953,
+  "Downloads": 175,
+  "Creator": {
+    "Username": "Poly by Google",
+    "DPURL": "https://static.poly.pizza/dp%2Fpolygoogle.jpg",
+    "Socials": {}
+  },
+  "Category": "Animals",
+  "Tags": [
+    "sea",
+    "ocean",
+    "underwater",
+    "creature",
+    "mollusk",
+    "tentacles"
+  ],
+  "Orbit": {
+    "phi": "1.31884",
+    "radius": "110%",
+    "theta": "0.87089"
+  },
+  "Background": {
+    "one": "#6d4c41",
+    "two": "hsl(15deg, 25%, 15%)",
+    "type": "Radial"
+  },
+  "Visibility": "Public",
+  "Type": "obj",
+  "Licence": "CC-BY 3.0",
+  "Animated": false
+}

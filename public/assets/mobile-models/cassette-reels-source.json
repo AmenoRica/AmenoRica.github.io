@@ -1,0 +1,37 @@
+{
+  "Title": "Cassete Tape",
+  "Description": "#cassete #tape #recording",
+  "UploadDate": "2017-10-06T17:14:50.332Z",
+  "ResourceID": "58782a1d-f7c8-4e01-b61b-96ea68740172",
+  "PublicID": "5GeV4CitAdY",
+  "Likes": 6,
+  "CommentCount": 0,
+  "Tris": 460,
+  "Views": 888,
+  "Downloads": 126,
+  "Creator": {
+    "Username": "Poly by Google",
+    "DPURL": "https://static.poly.pizza/dp%2Fpolygoogle.jpg",
+    "Socials": {}
+  },
+  "Category": "Other",
+  "Tags": [
+    "cassete",
+    "tape",
+    "recording"
+  ],
+  "Orbit": {
+    "phi": "1.31884",
+    "radius": "110%",
+    "theta": "0.87089"
+  },
+  "Background": {
+    "one": "#1e88e5",
+    "two": "hsl(208deg, 79%, 15%)",
+    "type": "Radial"
+  },
+  "Visibility": "Public",
+  "Type": "obj",
+  "Licence": "CC-BY 3.0",
+  "Animated": false
+}

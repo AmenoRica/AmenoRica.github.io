@@ -83,4 +83,9 @@
       .post h2 { font-size: 20px; }
       .post-subtitle { font-size: 13px; }
     }
-  
+
+.post-logo.toys { position: relative; display: inline-block; isolation: isolate; }
+.post-logo.toys::before {
+  content: ''; position: absolute; inset: .133333em -.066667em .133333em 50%;
+  z-index: -1; background: #f4b8d2; transform: rotate(-8deg); pointer-events: none;
+}

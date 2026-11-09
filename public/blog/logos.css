@@ -14,3 +14,8 @@
       .post-logo { font-size: 23px; }
       .post-logo.ugcatalog { font-size: 19px; }
       .post-logo.bukichi { font-size: 16px; }
+.post-logo.toys { position: relative; display: inline-block; isolation: isolate; }
+.post-logo.toys::before {
+  content: ''; position: absolute; inset: .133333em -.066667em .133333em 50%;
+  z-index: -1; background: #f4b8d2; transform: rotate(-8deg); pointer-events: none;
+}

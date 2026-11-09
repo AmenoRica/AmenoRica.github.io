@@ -5,47 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
   <title>AmenoRica</title>
-  <meta name="description" content="Fun-driven developer, designer, composer, artist, and project manager. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
+  <meta name="description" content="Driven by catchiness. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
   <script>document.documentElement.classList.add('font-loading');</script>
   <script src="/font-ready.js" onerror="document.documentElement.classList.remove('font-loading')" defer></script>
   <link rel="preload" href="/assets/fonts/pretendard/latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="robots" content="noindex">
   <link rel="canonical" href="https://ameno.cc/">
-  <link rel="preload" href="assets/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/fonts.css?v=font-loading">
-  <link rel="stylesheet" href="style.css?v=font-loading">
-  <script src="patterns.js" defer></script>
-  <script src="background.js?v=viewport-paint" defer></script>
-  <script src="motion.js" defer></script>
-  <script src="scroll.js?v=layout-reads" defer></script>
+  <link rel="preload" href="assets/fonts/barlowsemicondensed-full.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=barlow-logo">
+  <link rel="stylesheet" href="style.css?v=theme-workshop">
+  <script src="motion.js?v=static-font" defer></script>
+  <script src="scroll.js?v=static-projects" defer></script>
   <script src="wallet.js?v=compact" defer></script>
   <script type="module" src="theme.mjs?v=cleanup"></script>
   <noscript><style>
     .project-dock:not(.positioned) { visibility: visible; position: absolute; inset: auto 0; top: calc(100svh - 192px); display: flex; justify-content: center; align-items: flex-end; gap: 28px; }
     .project-mark { position: static; }
   </style></noscript>
-</head>
-<body>
+<script src="logo-align.js" defer></script>
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js"}}</script>
+  <script type="module" src="glass-mobile.js?v=theme-workshop"></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=four-lines"></head>
+<body data-variant="mono" class="mobile-home" data-workshop="theme">
+  <div id="scene" aria-hidden="true"></div>
   <button class="theme-toggle" type="button" aria-label="라이트 모드" aria-pressed="false" hidden>◐ Light</button>
-  <canvas class="pattern-field" aria-hidden="true"></canvas>
-  <canvas class="ink-curtain" aria-hidden="true"></canvas>
   <button class="motion-control" type="button" hidden aria-pressed="false">Pause animation</button>
   <main>
   <section class="hero" aria-label="Introduction">
+    <p id="fallback" class="mobile-fallback" hidden>3D 배경을 표시할 수 없습니다.</p>
     <div class="home-shortcuts">
       <a class="contact-shortcut" href="#contact">Contact &amp; Links <span aria-hidden="true">↘</span></a>
       <a class="blog-shortcut" href="/blog/" aria-label="Blog"><span><span class="blog-muted">we</span>B<span class="blog-muted">*</span>LOG</span> <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="identity" data-fonts="400 30px &quot;IBM Plex Mono&quot;|400 30px &quot;DM Sans&quot;|400 30px &quot;Instrument Serif&quot;|400 30px &quot;Cormorant Garamond&quot;|400 30px &quot;Syne&quot;|400 30px &quot;Space Grotesk&quot;|400 30px &quot;Unbounded&quot;|400 30px &quot;Bodoni Moda&quot;|400 30px &quot;Italiana&quot;|400 30px &quot;Playfair Display&quot;|400 30px &quot;Pretendard&quot;">
-      <h1 aria-label="AmenoRica"><span class="name-frame" aria-hidden="true"><span class="name-measure" style="font-family: 'Instrument Serif'">AmenoRica</span><span class="name-measure" style="font-family: 'DM Sans'">AmenoRica</span><span class="name-measure" style="font-family: 'Cormorant Garamond'">AmenoRica</span><span class="name-measure" style="font-family: 'Space Grotesk'">AmenoRica</span><span class="name-measure" style="font-family: 'Bodoni Moda'">AmenoRica</span><span class="name-measure" style="font-family: 'IBM Plex Mono'">AmenoRica</span><span class="name-measure" style="font-family: 'Italiana'">AmenoRica</span><span class="name-measure" style="font-family: 'Syne'">AmenoRica</span><span class="name-measure" style="font-family: 'Playfair Display'">AmenoRica</span><span class="name-measure" style="font-family: 'Unbounded'">AmenoRica</span><span class="name-text">AmenoRica</span></span></h1>
-      <p class="tagline" aria-label="Fun-driven developer, designer, composer, artist, and project manager">
-        <span class="tagline-prefix" aria-hidden="true">Fun-driven</span>
-        <span class="roles" aria-hidden="true">
-          <span class="role-option">developer</span><span class="role-option">designer</span><span class="role-option">composer</span><span class="role-option">artist</span><span class="role-option">project manager</span>
-          <span class="role-text">developer</span>
-        </span>
-        <span class="outro-text" aria-hidden="true"></span>
-      </p>
+    <div class="identity" data-fonts="400 30px &quot;Barlow Semi Condensed&quot;">
+      <svg class="identity-rule" viewBox="0 0 17.5 100" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="20" width="1" height="60"/><rect x="5.5" y="0" width="1" height="100"/><rect x="11" y="40" width="1" height="60"/><rect x="16.5" y="60" width="1" height="40"/></svg>
+      <h1 aria-label="AmenoRica"><span class="name-frame" aria-hidden="true"><span class="name-measure" style="font-family: 'Barlow Semi Condensed'; font-kerning: none">AmenoRica</span><span class="name-text"><span class="name-letter">A</span><span class="name-letter">m</span><span class="name-letter">e</span><span class="name-letter">n</span><span class="name-letter">o</span><span class="name-letter">R</span><span class="name-letter">i</span><span class="name-letter">c</span><span class="name-letter">a</span></span></span></h1>
+      <p class="tagline">Driven by catchiness</p>
     </div>
+    <p class="project-caption">Catch what I make</p>
     <div class="home-dock"><span class="home-slot" aria-hidden="true"></span><span class="home-slot" aria-hidden="true"></span><span class="home-slot home-toys-slot" aria-hidden="true"></span></div>
   </section>
   <section class="projects-screen" aria-label="About the projects">
@@ -70,7 +67,7 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
   <section class="contact-screen" id="contact" aria-labelledby="contact-heading" tabindex="-1">
     <div class="contact-content">
       <h2 id="contact-heading">Contact &amp; Links</h2>
-      <p class="contact-invitation" data-fonts="400 30px &quot;Pretendard&quot;">Let’s make something fun.</p>
+      <p class="contact-invitation" data-fonts="400 30px &quot;Barlow Semi Condensed&quot;|400 30px &quot;Pretendard&quot;">Let’s make something fun.</p>
       <p class="contact-note" lang="ko">아무 이유 없이 연락 주세요 :)</p>
       <ul class="contact-links">
         <li><a href="mailto:contact@ameno.cc"><span><span class="contact-service">Email</span><span class="contact-address">contact@ameno.cc</span></span><span aria-hidden="true">↗</span></a></li>
@@ -84,16 +81,15 @@ AmenoFuri는 현실 세계에서 소리들이 어떤 과정을 통해 나는지 
         </div></li>
       </ul>
     </div>
+  <footer class="site-credits"><a href="mobile-credits.html">3D models &amp; artwork credits ↗</a></footer>
   </section>
   </main>
-  <nav data-fonts="400 30px &quot;AmenoFuri Logo&quot;|400 30px &quot;ugcatalog Logo&quot;|400 30px &quot;Bukichi Logo&quot;|400 30px &quot;Fan Site Syne&quot;|400 30px &quot;Super Beatpop&quot;" class="project-dock" aria-label="Projects">
+  <nav data-fonts="400 30px &quot;Barlow Semi Condensed&quot;|400 30px &quot;AmenoFuri Logo&quot;|400 30px &quot;ugcatalog Logo&quot;|400 30px &quot;Bukichi Logo&quot;|400 30px &quot;Fan Site Syne&quot;|400 30px &quot;Super Beatpop&quot;" class="project-dock" aria-label="Projects">
     <div class="project-mark"><a class="amenofuri-link" href="#about-amenofuri" aria-label="AmenoFuri"><span class="amenofuri-logo" aria-hidden="true">Ameno<span class="amenofuri-signature">Furi</span></span></a></div>
-    <div class="project-mark"><fieldset class="project-links">
-      <legend class="fan-site-label"><span>Splatoon<small>Fan Sites</small></span></legend>
-      <img class="fan-site-squid" src="assets/photos/squid-logo.png" width="110" height="37" alt="Squid" decoding="async">
-      <a class="ugcatalog-link" href="#about-ugcatalog">ugcatalog</a>
-      <a class="bukichi-link" href="#about-bukichi">bukichi.fans</a>
-    </fieldset></div>
+    <div class="project-mark"><a class="fan-site-link" href="#about-ugcatalog" aria-label="Splatoon Fan Sites">
+      <span class="fan-site-label"><span>Splatoon<small>Fan Sites</small></span></span>
+      <img class="fan-site-squid" src="assets/photos/squid-logo.png" width="110" height="37" alt="" decoding="async">
+    </a></div>
     <div class="project-mark"><a class="toys-link" href="#about-toys">toys</a></div>
   </nav>
 </body>

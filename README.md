@@ -49,3 +49,7 @@ GitHub Actions는 수정일 계산을 위해 전체 Git 기록을 가져옵니�
 현재 템플릿의 기존 `noindex` 설정은 유지되어 있습니다.
 
 공식 문서: https://pagescms.org/docs/quick-start/ · https://pagescms.org/docs/configuration/ · https://docs.astro.build/en/guides/deploy/github/
+
+## 2026-11-09 디자인 배포
+
+홈은 `public/glass-mobile.js`의 유리와 6개 모빌, `assets/photos/workshop-sunlight.png`와 `workshop-night-monitor-off.png`를 사용합니다. 테마는 `theme.mjs`와 연동합니다. 이미지 두 장은 생성 이미지입니다. 모델 출처와 변경 내역은 `/mobile-credits.html`에서 제공합니다. 로컬 폰트·배경 비교 페이지는 배포하지 않습니다.

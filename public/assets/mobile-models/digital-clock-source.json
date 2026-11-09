@@ -1,0 +1,41 @@
+{
+  "Title": "Digital clock",
+  "Description": "#alarm #timepiece #time",
+  "UploadDate": "2017-10-21T14:34:09.976Z",
+  "ResourceID": "64876aed-2332-4ce3-b526-f7165d68bf8d",
+  "PublicID": "d8yh_H8G92y",
+  "Likes": 3,
+  "CommentCount": 0,
+  "Tris": 570,
+  "Views": 415,
+  "Downloads": 382,
+  "Creator": {
+    "Username": "jeremy",
+    "DPURL": "https://static.poly.pizza/dp%2Fa5e02278-d16e-4cbc-a709-114f417fe8ef.jpg",
+    "Socials": {
+      "Twitter": "astackofpaper",
+      "Instagram": "jedelblut",
+      "Website": "https://jeremy.toys"
+    }
+  },
+  "Category": "Other",
+  "Tags": [
+    "alarm",
+    "timepiece",
+    "time"
+  ],
+  "Orbit": {
+    "phi": "1.31884",
+    "radius": "110%",
+    "theta": "0.87089"
+  },
+  "Background": {
+    "one": "#6d4c41",
+    "two": "hsl(15deg, 25%, 15%)",
+    "type": "Radial"
+  },
+  "Visibility": "Public",
+  "Type": "obj",
+  "Licence": "CC-BY 3.0",
+  "Animated": false
+}

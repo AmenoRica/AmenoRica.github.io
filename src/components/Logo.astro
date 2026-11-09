@@ -3,5 +3,5 @@ const { category } = Astro.props;
 const { title, style, image } = category.data;
 ---
 <span class:list={['post-logo', style]} aria-label={title}>
-  {image ? <img src={image} alt="" style="max-width:130px;max-height:38px;vertical-align:middle" /> : category.id === 'amenofuri' ? <span aria-hidden="true">Ameno<span class="signature">Furi</span></span> : title}
+  {image ? <img src={image} alt="" style="max-width:130px;max-height:38px;vertical-align:middle" /> : category.id === 'amenofuri' ? <span aria-hidden="true">Ameno<span class="signature">Furi</span></span> : category.id === 'amenorica' ? <><svg class="ameno-rule" viewBox="0 0 17.5 100" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="20" width="1" height="60"/><rect x="5.5" y="0" width="1" height="100"/><rect x="11" y="40" width="1" height="60"/><rect x="16.5" y="60" width="1" height="40"/></svg><span>AmenoRica</span></> : title}
 </span>

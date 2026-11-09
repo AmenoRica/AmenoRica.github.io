@@ -1,0 +1,37 @@
+{
+  "Title": "Icosahedron 1,0",
+  "Description": "Regular Icosahedron 1,0 - Polyhedra Icosahedra",
+  "UploadDate": "2018-01-18T22:26:07.390Z",
+  "ResourceID": "2fdfcc53-0bcc-48b4-a730-a14260a6cb1e",
+  "PublicID": "3Oqw0rLIFtf",
+  "Likes": 0,
+  "CommentCount": 0,
+  "Tris": 20,
+  "Views": 506,
+  "Downloads": 83,
+  "Creator": {
+    "Username": "Ina Yosun Chang",
+    "DPURL": "",
+    "Socials": {}
+  },
+  "Category": "Objects",
+  "Tags": [
+    "polyhedron",
+    "buckminsterfullerene",
+    "icosidodecahedron"
+  ],
+  "Orbit": {
+    "phi": "1.31884",
+    "radius": "110%",
+    "theta": "0.87089"
+  },
+  "Background": {
+    "one": "#039be5",
+    "two": "hsl(200deg, 97%, 15%)",
+    "type": "Radial"
+  },
+  "Visibility": "Public",
+  "Type": "obj",
+  "Licence": "CC-BY 3.0",
+  "Animated": false
+}

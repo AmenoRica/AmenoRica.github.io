@@ -26,8 +26,12 @@ if (typeof document !== 'undefined') (() => {
   const hero = document.querySelector('.hero');
   const dock = document.querySelector('.project-dock');
   const marks = [...dock.querySelectorAll('.project-mark')];
-  const homes = [...document.querySelectorAll('.home-slot')];
   const targets = [...document.querySelectorAll('.project-slot')];
+  hero.append(dock);
+  marks.forEach((mark,index)=>{
+    targets[index].removeAttribute('aria-hidden');
+    targets[index].append(mark.cloneNode(true));
+  });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const narrow = matchMedia('(max-width: 600px)');
   const carousel = document.createElement('nav');
@@ -97,34 +101,12 @@ if (typeof document !== 'undefined') (() => {
   let frame = 0;
   function render() {
     frame = 0;
-    const scroll = window.scrollY;
-    const progress = projectTransition(scroll, hero.offsetHeight, reduced.matches);
-    const mobileHome = narrow.matches && scroll < 1;
+    const mobileHome = narrow.matches;
     carousel.classList.toggle('active', mobileHome);
     carousel.inert = !mobileHome;
-    dock.style.visibility = mobileHome ? 'hidden' : '';
+    dock.hidden = mobileHome;
     dock.inert = mobileHome;
     updateMarquee();
-    const positions = marks.map((mark, index) => {
-      const screen = targets[index].closest('.projects-screen');
-      const progress = projectTransition(scroll, screen.offsetTop, reduced.matches);
-      const mobileCells = narrow.matches ? cells.filter(cell => Number(cell.dataset.index) === index && cell.offsetWidth) : [];
-      const cellRects = mobileCells.map(cell => cell.getBoundingClientRect());
-      const from = cellRects.length ? cellRects.reduce((best, rect) =>
-        Math.abs(rect.x + rect.width / 2 - innerWidth / 2) <
-        Math.abs(best.x + best.width / 2 - innerWidth / 2) ? rect : best) : homes[index].getBoundingClientRect();
-      const to = targets[index].getBoundingClientRect();
-      const width = mark.offsetWidth, height = mark.offsetHeight;
-      const x = from.left + (from.width - width) / 2;
-      const y = from.bottom + scroll - height;
-      return [x + (to.left + (to.width - width) / 2 - x) * progress,
-        y + (to.top + (to.height - height) / 2 - y) * progress];
-    });
-    positions.forEach(([x, y], index) => {
-      marks[index].style.transform = `translate(${x}px, ${y}px)`;
-    });
-    document.documentElement.style.setProperty('--pattern-opacity', .7 - .25 * progress);
-    document.documentElement.style.setProperty('--description-opacity', Math.max(0, (progress - .3) / .7));
     dock.classList.add('positioned');
   }
   function schedule() { if (!frame) frame = requestAnimationFrame(render); }

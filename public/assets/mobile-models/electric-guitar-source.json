@@ -1,0 +1,37 @@
+{
+  "Title": "Electric guitar",
+  "Description": "#string #instrument #music\n",
+  "UploadDate": "2017-10-23T01:10:50.463Z",
+  "ResourceID": "9e2f770a-9e38-4763-ab8b-fc6a6ec4e166",
+  "PublicID": "eoSib2-NN9Y",
+  "Likes": 5,
+  "CommentCount": 0,
+  "Tris": 560,
+  "Views": "2.22k",
+  "Downloads": "1.36k",
+  "Creator": {
+    "Username": "Poly by Google",
+    "DPURL": "https://static.poly.pizza/dp%2Fpolygoogle.jpg",
+    "Socials": {}
+  },
+  "Category": "Objects",
+  "Tags": [
+    "string",
+    "instrument",
+    "music\n"
+  ],
+  "Orbit": {
+    "phi": "1.52073",
+    "radius": "31.581032358115756",
+    "theta": "-0.00560"
+  },
+  "Background": {
+    "one": "#3949ab",
+    "two": "hsl(232deg, 50%, 15%)",
+    "type": "Radial"
+  },
+  "Visibility": "Public",
+  "Type": "obj",
+  "Licence": "CC-BY 3.0",
+  "Animated": false
+}

@@ -1,0 +1,38 @@
+{
+  "Title": "Headphones",
+  "Description": "#speakers #audio #earpiece #sound",
+  "UploadDate": "2017-10-21T13:35:59.553Z",
+  "ResourceID": "04d5c244-1596-430e-a812-1bcb5de65db6",
+  "PublicID": "4QQ-QHSQhOI",
+  "Likes": 0,
+  "CommentCount": 0,
+  "Tris": 1032,
+  "Views": 811,
+  "Downloads": 164,
+  "Creator": {
+    "Username": "Poly by Google",
+    "DPURL": "https://static.poly.pizza/dp%2Fpolygoogle.jpg",
+    "Socials": {}
+  },
+  "Category": "Other",
+  "Tags": [
+    "speakers",
+    "audio",
+    "earpiece",
+    "sound"
+  ],
+  "Orbit": {
+    "phi": "1.31884",
+    "radius": "110%",
+    "theta": "0.87089"
+  },
+  "Background": {
+    "one": "#00897b",
+    "two": "hsl(174deg, 100%, 15%)",
+    "type": "Radial"
+  },
+  "Visibility": "Public",
+  "Type": "obj",
+  "Licence": "CC-BY 3.0",
+  "Animated": false
+}
