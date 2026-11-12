@@ -3,7 +3,7 @@ title: 아메노후리와 샤미후리 이야기.
 subtitle: 그냠 만들어보고 싶어서 만듬!
 createdAt: 2026-11-10
 category: amenofuri
-draft: true
+draft: false
 ---
 AmenoFuri는 가상악기 브랜드입니다. ShamiFuri는 샤미센의 구조를 모방한 물리 기반 가상악기에요.
 
