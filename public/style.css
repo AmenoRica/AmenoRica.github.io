@@ -1,5 +1,5 @@
 * { box-sizing: border-box; }
-:root { color-scheme: dark light; --page-bg: #000; --page-fg: #fff; --pattern-strength: 1; background: var(--page-bg); color: var(--page-fg); font-family: 'Pretendard', sans-serif; }
+:root { color-scheme: dark light; --safe-bottom: env(safe-area-inset-bottom, 0px); --page-bg: #000; --page-fg: #fff; --pattern-strength: 1; background: var(--page-bg); color: var(--page-fg); font-family: 'Pretendard', sans-serif; }
 body { isolation: isolate; margin: 0; min-width: 240px; }
 .hero { position: relative; display: grid; place-items: center; min-height: 100svh; padding: 100px 20px; }
 /* All logo dimensions derive from this one scale, including the samples. */
@@ -80,7 +80,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 .home-shortcuts a { gap: 10px; min-height: 48px; padding: 4px 8px; font-size: 18px; font-weight: 400; }
 .home-shortcuts a:hover, .home-shortcuts a:focus-visible { text-decoration: underline; text-underline-offset: 5px; }
 .blog-muted { color: inherit; opacity: .72; }
-.contact-screen { position: relative; min-height: 100svh; padding: 80px 28px; display: grid; place-items: center; scroll-snap-align: start; }
+.contact-screen { position: relative; min-height: 100svh; padding: 80px 28px calc(112px + var(--safe-bottom)); display: grid; place-items: center; scroll-snap-align: start; }
 .contact-screen:focus { outline: none; }
 .contact-content { width: min(100%, 580px); }
 .contact-label { margin: 0 0 24px; font-size: 14px; font-weight: 400; letter-spacing: .06em; }
@@ -138,7 +138,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 ::view-transition-old(root) { z-index: 1; }
 ::view-transition-new(root) { z-index: 0; }
 ::view-transition { pointer-events: none; }
-.theme-toggle { position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); left: 20px; z-index: 3; min-height: 44px; min-width: 44px; padding: 8px; border: 0; background: transparent; color: inherit; font: 12px Pretendard, sans-serif; cursor: pointer; }
+.theme-toggle { position: fixed; bottom: calc(20px + var(--safe-bottom)); left: max(20px, env(safe-area-inset-left, 0px)); z-index: 3; min-height: 44px; min-width: 44px; padding: 8px; border: 0; background: transparent; color: inherit; font: 12px Pretendard, sans-serif; cursor: pointer; }
 .theme-toggle:hover { opacity: .65; }
 .theme-toggle:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
 
@@ -179,7 +179,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 .hero .identity { pointer-events: none; }
 .mobile-pause { position: absolute; bottom: 20px; right: 24px; z-index: 2; min-height: 44px; border: 0; padding: 8px; background: transparent; color: var(--page-fg); font: 12px Pretendard, sans-serif; cursor: pointer; }
 .mobile-fallback { position: absolute; bottom: 24px; right: 24px; font-size: 12px; }
-.site-credits { position: absolute; right: 24px; bottom: 20px; text-align: right; pointer-events: auto; }
+.site-credits { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); bottom: calc(20px + var(--safe-bottom)); text-align: right; pointer-events: auto; }
 .site-credits a { opacity: .55; }
 .site-credits a:hover, .site-credits a:focus-visible { opacity: 1; }
 
@@ -214,11 +214,11 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 /* Keep each project mark's internal proportions while giving the links more presence. */
 .hero .project-dock .project-mark > a, .hero .carousel-cell > a { zoom: 1.02; }
-.mobile-home .project-dock { gap: 28px; bottom: 88px; }
-.project-caption { bottom: 168px; font-size: 18px; font-weight: 400; opacity: .9; }
+.mobile-home .project-dock { gap: 28px; bottom: calc(88px + var(--safe-bottom)); }
+.project-caption { bottom: calc(168px + var(--safe-bottom)); font-size: 18px; font-weight: 400; opacity: .9; }
 @media (max-width: 600px) {
   .hero .carousel-cell { flex-basis: 160px; }
-  .project-caption { bottom: 164px; font-size: 17px; }
+  .project-caption { bottom: calc(164px + var(--safe-bottom)); font-size: 17px; }
 }
 :root[data-theme="light"] .hero .project-mark > a,
 :root[data-theme="light"] .hero .carousel-cell > a {
@@ -227,11 +227,11 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 .mobile-home .hero { min-height: max(640px, 100svh); }
 
-.scroll-cue { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 2; pointer-events: auto; justify-content: center; width: 44px; height: 44px; }
+.scroll-cue { position: absolute; bottom: calc(16px + var(--safe-bottom)); left: 50%; transform: translateX(-50%); z-index: 2; pointer-events: auto; justify-content: center; width: 44px; height: 44px; }
 .scroll-cue span { width: 12px; height: 12px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); animation: scroll-nudge 2.4s ease-in-out infinite; }
 @keyframes scroll-nudge { 0%, 100% { transform: translateY(-3px) rotate(45deg); } 50% { transform: translateY(4px) rotate(45deg); } }
 @media (prefers-reduced-motion: reduce) { .scroll-cue span { animation: none; } }
-@media (max-width: 600px) { .hero .home-carousel { bottom: 54px; } }
+@media (max-width: 600px) { .hero .home-carousel { bottom: calc(54px + var(--safe-bottom)); } }
 
 html.section-travel { scroll-snap-type: none; scroll-behavior: auto; }
 .back-to-top { margin-top: 24px; gap: 10px; font-size: 14px; }
@@ -241,3 +241,10 @@ html.section-travel { scroll-snap-type: none; scroll-behavior: auto; }
 .projects-screen > .project-row + .project-row { position: relative; }
 .projects-screen > .project-row + .project-row::before { content: ''; position: absolute; top: -36px; left: 0; right: 0; border-top: 1px solid currentColor; opacity: .22; pointer-events: none; }
 @media (max-width: 600px) { .projects-screen > .project-row + .project-row::before { top: -26px; } }
+
+@media (max-width: 600px) {
+  .mobile-home .hero { min-height: 100svh; padding-bottom: calc(100px + var(--safe-bottom)); }
+}
+@media (max-width: 600px) and (max-height: 600px) {
+  .mobile-home .hero { padding-top: max(40px, env(safe-area-inset-top, 0px)); padding-bottom: calc(200px + var(--safe-bottom)); }
+}

@@ -7,15 +7,15 @@
   <title>AmenoRica</title>
   <meta name="description" content="Driven by catchiness. Explore AmenoFuri, ugcatalog, and bukichi.fans.">
   <script>document.documentElement.classList.add('font-loading');</script>
-  <script src="/font-ready.js" onerror="document.documentElement.classList.remove('font-loading')" defer></script>
   <link rel="preload" href="/assets/fonts/pretendard/latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="robots" content="noindex">
   <link rel="canonical" href="https://ameno.cc/">
   <link rel="preload" href="assets/fonts/barlowsemicondensed-full.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css?v=barlow-logo">
-  <link rel="stylesheet" href="style.css?v=theme-workshop">
+  <link rel="stylesheet" href="style.css?v=safe-area">
   <script src="motion.js?v=static-font" defer></script>
   <script src="scroll.js?v=static-projects" defer></script>
+  <script src="/font-ready.js" onerror="document.documentElement.classList.remove('font-loading')" defer></script>
   <script src="wallet.js?v=compact" defer></script>
   <script type="module" src="theme.mjs?v=cleanup"></script>
   <noscript><style>
@@ -24,7 +24,7 @@
   </style></noscript>
 <script src="logo-align.js" defer></script>
   <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js"}}</script>
-  <script type="module" src="glass-mobile.js?v=theme-workshop"></script>
+  <script type="module" src="glass-mobile.js?v=background-60fps"></script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=four-lines"></head>
 <body data-variant="mono" class="mobile-home" data-workshop="theme">
   <div id="scene" aria-hidden="true"></div>
@@ -87,13 +87,13 @@ AmenoFuri는 비는 오지 않지만, 당장이라도 비가 내리는 듯한 �
   <footer class="site-credits"><a href="mobile-credits.html">3D models &amp; artwork credits ↗</a></footer>
   </section>
   </main>
-  <nav data-fonts="400 30px &quot;Barlow Semi Condensed&quot;|400 30px &quot;AmenoFuri Logo&quot;|400 30px &quot;ugcatalog Logo&quot;|400 30px &quot;Bukichi Logo&quot;|400 30px &quot;Fan Site Syne&quot;|400 30px &quot;Super Beatpop&quot;" class="project-dock" aria-label="Projects">
-    <div class="project-mark"><a class="amenofuri-link" href="#about-amenofuri" aria-label="AmenoFuri"><span class="amenofuri-logo" aria-hidden="true">Ameno<span class="amenofuri-signature">Furi</span></span></a></div>
-    <div class="project-mark"><a class="fan-site-link" href="#about-ugcatalog" aria-label="Splatoon Fan Sites">
+  <nav class="project-dock" aria-label="Projects">
+    <div class="project-mark"><a data-fonts="400 44px &quot;AmenoFuri Logo&quot;" class="amenofuri-link" href="#about-amenofuri" aria-label="AmenoFuri"><span class="amenofuri-logo" aria-hidden="true">Ameno<span class="amenofuri-signature">Furi</span></span></a></div>
+    <div class="project-mark"><a data-fonts="800 18px &quot;Fan Site Syne&quot;" class="fan-site-link" href="#about-ugcatalog" aria-label="Splatoon Fan Sites">
       <span class="fan-site-label"><span>Splatoon<small>Fan Sites</small></span></span>
       <img class="fan-site-squid" src="assets/photos/squid-logo.png" width="110" height="37" alt="" decoding="async">
     </a></div>
-    <div class="project-mark"><a class="toys-link" href="#about-toys">toys</a></div>
+    <div class="project-mark"><a data-fonts="400 30px &quot;Super Beatpop&quot;" class="toys-link" href="#about-toys">toys</a></div>
   </nav>
 </body>
 </html>

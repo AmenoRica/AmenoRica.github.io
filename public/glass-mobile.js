@@ -12,6 +12,17 @@ try { renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'low-po
 catch { document.querySelector('#fallback').hidden = false; button.hidden = true; }
 if (renderer) start().catch(error=>{console.error(error);document.querySelector('#fallback').hidden=false;button.hidden=true;});
 async function start() {
+  // Start independent downloads together instead of waiting for both backdrops first.
+  const loader = new GLTFLoader();
+  const names = ['icosahedron', null, toy ? 'electric-guitar' : 'electric-guitar-wire', toy ? 'cassette-reels' : 'cassette-reels-wire', 'headphones', 'squid-angular'];
+  const modelsReady = Promise.all(names.map(name => name ? loader.loadAsync(`./assets/mobile-models/${name}.glb`).then(g => g.scene) : null));
+  const sprite = new Image();
+  sprite.src = './assets/mobile-models/pixel-character.png';
+  const spriteReady = sprite.decode();
+  const texturesReady = document.body.dataset.workshop
+    ? Promise.all(['sunlight','night-monitor-off'].map(name => new T.TextureLoader().loadAsync(`./assets/photos/workshop-${name}.webp`)))
+    : Promise.resolve([]);
+  const [models, , loadedTextures] = await Promise.all([modelsReady, spriteReady, texturesReady]);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
@@ -20,7 +31,7 @@ async function start() {
   scene.background = new T.Color('#ffffff');
   let workshop, workshopTextures;
   if(document.body.dataset.workshop){
-    workshopTextures=await Promise.all(['sunlight','night-monitor-off'].map(name=>new T.TextureLoader().loadAsync(`./assets/photos/workshop-${name}.png`)));
+    workshopTextures=loadedTextures;
     workshopTextures.forEach(texture=>texture.colorSpace=T.SRGBColorSpace);
     const texture=workshopTextures[0];
     workshop=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:texture,transparent:true,opacity:1,depthWrite:false,toneMapped:false}));
@@ -54,7 +65,7 @@ async function start() {
     pivot.position.set(x,10,-1);content.position.copy(pivot.position).negate();
     content.position.y-=index*.65;
     pivot.add(content);scene.add(pivot);
-    return {pivot,content,phase:index*2.4,pitch:0,yaw:0,pitchSpeed:0,yawSpeed:0};
+    return {pivot,content,phase:index*2.4,pitch:0,yaw:0,pitchSpeed:0,yawSpeed:0,overlap:0};
   });
   const rigFor=x=>rigs[x<0?0:1].content;
   function mesh(parent, geometry, material, x=0, y=0, z=0) {
@@ -82,9 +93,6 @@ async function start() {
     mobiles.push({ pivot, piece, seed, length, depthAngle:0, depthVelocity:0, angle:0, velocity:0, twist:0, spin:0 });return pivot;
   }
 
-  const loader = new GLTFLoader();
-  const names = ['icosahedron','digital-clock','electric-guitar','cassette-reels','headphones','squid-angular'];
-  const models = await Promise.all(names.map(name => loader.loadAsync(`./assets/mobile-models/${name}.glb`).then(g => g.scene)));
   function model(index, size, rotation=[0,0,0], material=null) {
     const root = new T.Group(), item = models[index]; root.add(item);
     item.rotation.set(...rotation); item.updateMatrixWorld(true);
@@ -95,7 +103,6 @@ async function start() {
     if(material)item.traverse(child=>{if(child.isMesh)child.material=material;});
     return root;
   }
-  const sprite = new Image();sprite.src='./assets/mobile-models/pixel-character.png';await sprite.decode();
   const pixels=document.createElement('canvas');pixels.width=sprite.width;pixels.height=sprite.height;
   const ctx=pixels.getContext('2d');ctx.drawImage(sprite,0,0);const data=ctx.getImageData(0,0,pixels.width,pixels.height).data;
   const character=new T.Group(), outline=[], corners=new Map();
@@ -275,15 +282,27 @@ async function start() {
     }
   }
   function windFalloff(distance){return .1+.9*Math.exp(-Math.pow(distance/.32,2));}
+  let overlapElapsed = 1 / 20;
+  let nextFrame = 0;
   function loop(now){
-    frame=requestAnimationFrame(loop);const dt=Math.min((now-last)/1000,.04);last=now;if(paused||document.hidden||!visible)return;
+    frame=requestAnimationFrame(loop);
+    if(paused||document.hidden||!visible){last=now;nextFrame=now;return;}
+    if(now + .5 < nextFrame)return;
+    // Keep a 60 Hz cadence even on 120 Hz displays, without slowing the simulation.
+    const interval=1000/60;
+    nextFrame=now+interval-(Math.max(0,now-nextFrame)%interval);
+    const dt=Math.max(0,Math.min((now-last)/1000,.04));last=now;
     time+=dt;smooth.lerp(pointer,1-Math.exp(-dt*2));
     stepRain();
     windTarget.multiplyScalar(Math.exp(-dt*.85));
     windDelta.copy(windTarget).sub(wind).multiplyScalar(1-Math.exp(-dt*1.6)).clampLength(0,.4*dt);
     wind.add(windDelta);
     camera.updateMatrixWorld();scene.updateMatrixWorld(true);
-    separatePieces(dt);
+    overlapElapsed += dt;
+    if (overlapElapsed >= 1 / 20) {
+      separatePieces(overlapElapsed);
+      overlapElapsed = 0;
+    }
     for(const m of mobiles){
       m.piece.getWorldPosition(projected).project(camera);
       const distance=Math.hypot((projected.x-smooth.x)*viewWidth,(projected.y-smooth.y)*viewHeight)/(2*Math.min(viewWidth,viewHeight));
@@ -355,9 +374,14 @@ async function start() {
     m.velocity=0;m.depthVelocity=0;wind.set(0,0);windTarget.set(0,0);
     renderer.domElement.setPointerCapture(e.pointerId);renderer.domElement.style.cursor='grabbing';e.preventDefault();
   });
+  let lastHoverCheck = -Infinity;
   renderer.domElement.addEventListener('pointermove',e=>{
     if(paused)return;
-    if(!dragging){renderer.domElement.style.cursor=pickPiece(e)?'grab':'';return;}
+    if(!dragging){
+      if (e.timeStamp - lastHoverCheck < 1000 / 30) return;
+      lastHoverCheck = e.timeStamp;
+      renderer.domElement.style.cursor=pickPiece(e)?'grab':'';return;
+    }
     if(e.pointerId!==dragging.pointerId)return;
     pointerRay(e);if(!raycaster.ray.intersectPlane(dragging.plane,hitPoint))return;
     const m=dragging.m;
@@ -369,7 +393,6 @@ async function start() {
     m.velocity=T.MathUtils.clamp((angle-m.angle)/dt,-1.2,1.2);
     m.depthVelocity=T.MathUtils.clamp((depth-m.depthAngle)/dt,-1.2,1.2);
     m.angle=angle;m.depthAngle=depth;m.pivot.rotation.set(depth,0,angle);dragging.last=e.timeStamp;
-    draw();
   });
   function endDrag(e){
     if(!dragging||e&&e.pointerId!==undefined&&e.pointerId!==dragging.pointerId)return;
