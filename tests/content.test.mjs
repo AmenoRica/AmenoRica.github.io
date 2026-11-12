@@ -25,5 +25,17 @@ test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌
   assert.match(article,/<h1>검증 글 1<br\s*\/?>두 번째 줄<\/h1>/);
   assert.match(article,/<title>검증 글 1 두 번째 줄 — AmenoRica<\/title>/);
   assert.ok(!existsSync(join(folder,'dist/blog/check-14/index.html')));
+  const sitemap = readFileSync(join(folder,'dist/sitemap.xml'),'utf8');
+  const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
+  assert.deepEqual(new Set(urls), new Set([
+   'https://ameno.cc/', 'https://ameno.cc/blog/', 'https://ameno.cc/resume/',
+   ...Array.from({length:13}, (_, i) => `https://ameno.cc/blog/check-${i+1}/`),
+  ]));
+  assert.equal(urls.length, 16);
+  assert.doesNotMatch(list + article, /noindex/);
+  for (const path of ['public/index.html', 'public/resume/index.html']) {
+   assert.doesNotMatch(readFileSync(path,'utf8'), /<meta[^>]*name=["']robots["'][^>]*noindex/);
+  }
+  assert.match(readFileSync('public/robots.txt','utf8'), /Sitemap: https:\/\/ameno\.cc\/sitemap\.xml/);
  } finally { rmSync(folder,{recursive:true,force:true}); }
 });
