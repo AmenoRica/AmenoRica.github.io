@@ -39,6 +39,12 @@ Astro로 빌드해 GitHub Pages에 배포하는 홈페이지와 블로그 소스
 CMS 로그인·권한 승인과 실제 CMS 저장은 별도 확인이 필요합니다.
 공개 저장소에서는 초안 파일도 GitHub 방문자가 읽을 수 있습니다. 초안 기능은 블로그에 표시하지 않는 기능입니다.
 
+## CSS·JS 캐시 갱신
+
+`npm run build`는 Astro 빌드 후 CSS·JS 내용 해시로 자동 버전을 생성합니다. HTML의 CSS·JS 주소, 인라인 모듈·import map, JS의 내부 import와 CSS import에 같은 버전을 적용합니다. 내부 모듈 하나만 바뀌어도 진입 파일 주소가 함께 갱신되므로 수동 `?v=` 수정은 필요 없습니다. 동일한 소스로 다시 빌드하면 버전은 유지됩니다. 외부 URL과 글 본문은 변경하지 않습니다.
+
+배포에서는 `astro build`만 직접 실행하지 말고 `npm run build`를 사용합니다. 기존 GitHub Actions는 이미 이 명령을 사용합니다.
+
 ## 로컬 개발
 
 Node.js 24 이상 권장.
