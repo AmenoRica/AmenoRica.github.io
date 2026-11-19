@@ -10,10 +10,14 @@ const vm = require('node:vm');
   const nav={querySelectorAll:()=>buttons};
   function control(dataset={},textContent='') { return {dataset,textContent,firstElementChild:{cloneNode(){return {logo:textContent}}},handlers:{},setAttribute(k,v){this[k]=v},focus(){this.focused=true},addEventListener(k,fn){this.handlers[k]=fn}}; }
   const trigger=control(), label={replaceChildren(node){this.logo=node.logo}}, categories=[control({category:'amenofuri'},'AmenoFuri'),control({category:'ugcatalog'},'ugcatalog'),control({category:'bukichi'},'bukichi.fans'),control({category:'toys'},'toys'),control({category:'amenorica'},'AmenoRica'),control({category:'weblog'},'WeB*LOG'),control({category:'all'},'ALL')];
-  const options={hidden:true,querySelectorAll:()=>categories};
+  const options={...control(),removeAttribute(k){delete this[k]},hidden:true,querySelectorAll:()=>categories};
+  const timers=new Map();let timerId=0;
   const picker={...control(),contains:target=>target===trigger || categories.includes(target)};
   const document={addEventListener(){},fonts:{ready:Promise.resolve()},createElement:()=>({setAttribute(){}}),querySelector:s=>({'#article-page':list,'.article-viewport':viewport,'.pagination':nav,'#page-status':status,'.category-picker':picker,'.category-trigger':trigger,'.category-label':label,'#category-options':options})[s]};
-  vm.runInNewContext(fs.readFileSync('public/blog/pagination.js','utf8'),{document,matchMedia:()=>reduced,ResizeObserver:class{observe(){}}});
+  vm.runInNewContext(fs.readFileSync('public/blog/pagination.js','utf8'),{document,setTimeout:fn=>{timers.set(++timerId,fn);return timerId},clearTimeout:id=>timers.delete(id),matchMedia:()=>reduced,ResizeObserver:class{observe(){}}});
+  options.handlers.scroll();assert.equal(options['data-scrolling'],'');
+  options.handlers.scroll();assert.equal(timers.size,1);
+  [...timers.values()][0]();assert.equal(options['data-scrolling'],undefined);
   const settle=async()=>{for(let i=0;i<12;i++)await Promise.resolve()};
   assert.equal(rows.filter(r=>!r.hidden).length,6);assert.equal(buttons[0].disabled,true);assert.equal(gaps.filter(g=>!g.hidden).length,0);assert.equal(list.style.gridAutoRows,'104px');
   buttons[3].click();buttons[3].click();await settle();

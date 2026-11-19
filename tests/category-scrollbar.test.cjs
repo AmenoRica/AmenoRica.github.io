@@ -1,0 +1,20 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const vm=require('node:vm');
+const fs=require('node:fs');
+test('custom category scrollbar tracks overflow, dragging, clamping and cancellation',()=>{
+ const handlers={}, events={}; let resize;
+ const options={hidden:false,clientWidth:200,scrollWidth:400,scrollLeft:0,offsetLeft:150,addEventListener:(k,f)=>events[k]=f};
+ const thumb={style:{},getBoundingClientRect:()=>({left:150+options.scrollLeft/2,right:250+options.scrollLeft/2,width:100})};
+ const track={style:{},firstElementChild:thumb,addEventListener:(k,f)=>handlers[k]=f,getBoundingClientRect:()=>({left:150,width:200}),setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},setPointerCapture(){},hasPointerCapture:()=>true,releasePointerCapture(){}};
+ vm.runInNewContext(fs.readFileSync('public/blog/category-scrollbar.js','utf8'),{document:{querySelector:s=>s==='#category-options'?options:track},ResizeObserver:class{constructor(f){resize=f}observe(){}}});
+ assert.equal(thumb.style.width,'100px');assert.equal(track.hidden,false);
+ const event=x=>({button:0,pointerId:1,clientX:x,preventDefault(){}});
+ handlers.pointerdown(event(175));handlers.pointermove(event(225));assert.equal(options.scrollLeft,100);
+ handlers.pointermove(event(999));assert.equal(options.scrollLeft,200);
+ handlers.pointercancel(event(999));handlers.pointermove(event(150));assert.equal(options.scrollLeft,200);
+ assert.equal(track['data-dragging'],undefined);
+ options.scrollLeft=0;events.scroll();assert.equal(thumb.style.transform,'translateX(0px)');
+ options.hidden=true;resize();assert.equal(track.hidden,true);
+ options.hidden=false;options.scrollWidth=200;resize();assert.equal(track.hidden,true);
+});

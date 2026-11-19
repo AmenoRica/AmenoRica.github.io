@@ -8,6 +8,7 @@ const categories = (await getCollection('categories', ({id}) => id !== 'diary'))
 <!doctype html>
 <html lang="ko">
 <head>
+<link rel="preload" href="/assets/fonts/barlowsemicondensed-full.woff2" as="font" type="font/woff2" crossorigin>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script is:inline>document.documentElement.classList.add('font-loading');</script>
@@ -20,10 +21,12 @@ const categories = (await getCollection('categories', ({id}) => id !== 'diary'))
   <link rel="stylesheet" href="/blog/list.css?v=workshop-release">
   <script is:inline type="module" src="hanging-title.js"></script>
   <script is:inline src="pagination.js" defer></script>
+  <script is:inline src="category-scrollbar.js" defer></script>
 <link rel="preload" href="/assets/fonts/blog-bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/blog/ameno-logo.css"><link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>
 <body>
   <a data-fonts="400 30px &quot;Barlow Semi Condensed&quot;" class="home-brand" href="../" aria-label="AmenoRica 홈페이지"><svg class="ameno-rule" viewBox="0 0 17.5 100" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="20" width="1" height="60"/><rect x="5.5" y="0" width="1" height="100"/><rect x="11" y="40" width="1" height="60"/><rect x="16.5" y="60" width="1" height="40"/></svg><span>AmenoRica</span></a>
+  <a class="diary-link" href="/diary/">Diary ↗</a>
   <main>
     <h1 class="sr-only">weB*LOG</h1>
     <div class="hanging-title">
@@ -39,6 +42,7 @@ const categories = (await getCollection('categories', ({id}) => id !== 'diary'))
           <button type="button" data-category="all" aria-label="ALL" aria-pressed="true"><span class="post-logo all">ALL</span></button>
           {categories.map(category => <button type="button" data-category={category.id} aria-label={category.data.title} aria-pressed="false"><Logo category={category} /></button>)}
         </div>
+        <div class="category-scrollbar" aria-hidden="true" hidden><span></span></div>
       </div>
       <div class="article-viewport">
       <ol id="article-page" tabindex="-1">

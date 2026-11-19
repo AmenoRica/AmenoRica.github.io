@@ -10,6 +10,12 @@
   const trigger = document.querySelector('.category-trigger');
   const label = document.querySelector('.category-label');
   const options = document.querySelector('#category-options');
+  let scrollIdle;
+  options.addEventListener('scroll', () => {
+    options.setAttribute('data-scrolling', '');
+    clearTimeout(scrollIdle);
+    scrollIdle = setTimeout(() => options.removeAttribute('data-scrolling'), 600);
+  }, {passive:true});
   const categories = [...options.querySelectorAll('button')];
   const perPage = 6;
   let category = 'all', total = Math.ceil(rows.length / perPage);
