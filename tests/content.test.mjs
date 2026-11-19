@@ -13,6 +13,10 @@ test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌
   writeFileSync(join(folder,'package.json'),'{"type":"module"}');
   symlinkSync(resolve('node_modules'),join(folder,'node_modules'),'dir');
   for (let i=1;i<=14;i++) writeFileSync(join(folder,`src/content/posts/check-${i}.md`),`---\ntitle: ${JSON.stringify(i === 1 ? '검증 글 1\n두 번째 줄' : `검증 글 ${i}`)}\ncreatedAt: "2026-11-05"\ncategory: toys\ndraft: ${i === 14}\n${i===1?'subtitle: "검증 부제목"\n':''}---\n\n## 본문\n\n실제 Markdown 내용.\n`);
+  for (const [id, draft] of [['diary-visible', false], ['diary-text', false], ['diary-draft', true], ['sample-diary-test', true]]) {
+   writeFileSync(join(folder,`src/content/posts/${id}.md`),`---\ntitle: ${id}\ncreatedAt: "2026-10-04"\ncategory: diary\ndraft: ${draft}\n${id === 'diary-visible' ? 'subtitle: "일기 부제목"\n' : ''}---\n\nDiary body.\n${id === 'diary-visible' ? '\n![사진][cover]\n\n[cover]: /uploads/first.jpg\n' : ''}`);
+  }
+  for (let i=0;i<30;i++) writeFileSync(join(folder,`src/content/posts/diary-count-${i}.md`),'---\ntitle: count fixture\ncreatedAt: "2026-10-04"\ncategory: diary\n---\nCount fixture.');
   execFileSync(process.execPath,[resolve('node_modules/astro/bin/astro.mjs'),'build'],{cwd:folder,env:{...process.env,GITHUB_ACTIONS:'',ASTRO_TELEMETRY_DISABLED:'1'},stdio:'pipe'});
   const list=readFileSync(join(folder,'dist/blog/index.html'),'utf8');
   assert.equal((list.match(/class="post-title-link"/g)||[]).length,13);
@@ -28,10 +32,35 @@ test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌
   const sitemap = readFileSync(join(folder,'dist/sitemap.xml'),'utf8');
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
   assert.deepEqual(new Set(urls), new Set([
-   'https://ameno.cc/', 'https://ameno.cc/blog/', 'https://ameno.cc/resume/',
+   'https://ameno.cc/', 'https://ameno.cc/blog/', 'https://ameno.cc/diary/', 'https://ameno.cc/resume/',
    ...Array.from({length:13}, (_, i) => `https://ameno.cc/blog/check-${i+1}/`),
   ]));
-  assert.equal(urls.length, 16);
+  assert.equal(urls.length, 17);
+  const diary = readFileSync(join(folder,'dist/diary/index.html'),'utf8');
+  assert.match(diary, /diary-visible/);
+  assert.equal((diary.match(/class="month-choice"/g) || []).length,12);
+  assert.match(diary, /data-month="2026-01"/);
+  assert.match(diary, /data-month="2026-12"/);
+  assert.match(diary, /data-month="2026-10" data-count="32"/);
+  assert.match(diary, /2026년 10월, 기록 32개/);
+  assert.match(diary, /data-month="2026-09" data-count="0"/);
+  assert.doesNotMatch(diary, /month-dots|<circle /);
+  assert.doesNotMatch(diary, /timeline-track|crown-rib|type="range"/);
+  assert.match(diary, /Diary body/);
+  assert.match(diary, /<dialog id="entry-dialog"/);
+  assert.match(diary, /aria-haspopup="dialog"/);
+  assert.doesNotMatch(diary, /entry-reader/);
+  assert.equal((diary.match(/class="entry-subtitle"/g) || []).length, 2);
+  assert.equal((diary.match(/>일기 부제목</g) || []).length, 2);
+  assert.match(diary, /aria-describedby="subtitle-diary-visible"/);
+  assert.doesNotMatch(diary, /aria-describedby="subtitle-diary-text"/);
+  assert.equal((diary.match(/class="entry-photo"/g) || []).length, 1);
+  assert.match(diary, /src="\/uploads\/first.jpg"/);
+  assert.match(diary, /open-entry text-entry/);
+  assert.doesNotMatch(diary, /기록 읽기|RECORDS/);
+  assert.doesNotMatch(diary, /diary-draft|sample-diary-test/);
+  assert.doesNotMatch(list + sitemap, /diary-visible|diary-draft|sample-diary-test/);
+  assert.ok(!existsSync(join(folder,'dist/blog/diary-visible/index.html')));
   assert.doesNotMatch(list + article, /noindex/);
   for (const path of ['public/index.html', 'public/resume/index.html']) {
    assert.doesNotMatch(readFileSync(path,'utf8'), /<meta[^>]*name=["']robots["'][^>]*noindex/);

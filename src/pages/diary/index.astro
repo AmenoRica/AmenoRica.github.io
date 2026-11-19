@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from 'astro:content';
+import { visibleDiary, archiveMonths } from '../../lib/diary.mjs';
+import DiaryEntry from '../../components/DiaryEntry.astro';
+const posts = (await getCollection('posts')).filter(post => visibleDiary(post, import.meta.env.DEV)).sort((a,b) => b.data.createdAt.localeCompare(a.data.createdAt) || a.id.localeCompare(b.id));
+const entries = await Promise.all(posts.map(async post => ({post, ...await render(post)})));
+const months = archiveMonths(posts);
+const monthCounts = new Map();
+for (const post of posts) {
+  const month = post.data.createdAt.slice(0,7);
+  monthCounts.set(month, (monthCounts.get(month) ?? 0) + 1);
+}
+const years = [...new Set(months.map(month => month.slice(0,4)))];
+
+---
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diary — AmenoRica</title>
+<link rel="icon" href="/favicon.svg" />
+<script is:inline src="/blog/theme-preference.js"></script>
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/blog/article.css" />
+<link rel="stylesheet" href="/diary.css" />
+<link rel="stylesheet" href="/blog/ameno-logo.css" />
+</head>
+<body>
+<a class="skip" href="#records">기록으로 건너뛰기</a>
+<nav aria-label="주 메뉴"><a class="brand" href="/" aria-label="AmenoRica"><svg class="ameno-rule" viewBox="0 0 17.5 100" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="20" width="1" height="60"/><rect x="5.5" y="0" width="1" height="100"/><rect x="11" y="40" width="1" height="60"/><rect x="16.5" y="60" width="1" height="40"/></svg><span>AmenoRica</span></a><a href="/blog/">WeB*LOG ↗</a></nav>
+<main class="archive">
+<h1 class="sr-only">일기 아카이브</h1>
+{posts.length ? <div class="archive-layout">
+<section class="month-control" aria-label="연도별 월 탐색">
+{years.map(year => <section class="year-block" aria-labelledby={`year-${year}`}>
+<h2 id={`year-${year}`}>{year}</h2>
+<div class="month-grid">{Array.from({length:12}, (_, index) => {
+const month = `${year}-${String(index + 1).padStart(2,'0')}`;
+const count = monthCounts.get(month) ?? 0;
+return <button class="month-choice" data-month={month} data-count={count} title={`기록 ${count}개`} aria-label={`${year}년 ${index + 1}월, 기록 ${count}개`} aria-pressed={month === months[0]}>
+<span>{index + 1}</span>
+</button>;
+})}</div>
+</section>)}
+<p id="month-status" class="sr-only" role="status" aria-live="polite"></p>
+</section>
+<div id="records" tabindex="0" role="region" aria-label="일기 목록">
+{entries.map(({post, Content}, index) => <DiaryEntry post={post} firstInMonth={index === 0 || entries[index - 1].post.data.createdAt.slice(0,7) !== post.data.createdAt.slice(0,7)}><Content /></DiaryEntry>)}
+</div>
+</div> : <p id="records">아직 남겨 둔 일기가 없습니다.</p>}
+</main>
+<dialog id="entry-dialog" aria-labelledby="entry-title"><button class="close-entry" aria-label="닫기" autofocus></button><article id="entry-content"></article></dialog>
+<div id="theme-ink" aria-hidden="true" hidden></div><button class="theme-toggle" aria-label="라이트 모드" aria-pressed="false">◐</button>
+<script is:inline type="module">import { createTheme } from '/blog/theme-mode.mjs'; createTheme();</script>
+<script>import '../../scripts/diary.js';</script>
+</body></html>

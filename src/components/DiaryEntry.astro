@@ -1,0 +1,19 @@
+---
+import { photoPreview } from '../lib/diary-image.mjs';
+import { displayDate } from '../lib/dates.mjs';
+const { post, firstInMonth } = Astro.props;
+const body = await Astro.slots.render('default');
+const photo = await photoPreview(body);
+const month = post.data.createdAt.slice(0,7);
+const subtitle = post.data.subtitle?.trim();
+const title = post.id.startsWith('sample-diary-') ? post.data.title.replace(/^\[샘플\]\s*/, '') : post.data.title;
+---
+<article class:list={['diary-card', {'month-group':firstInMonth}]} data-month={firstInMonth ? month : undefined} id={firstInMonth ? `month-${month}` : undefined}>
+<button class:list={['open-entry', {'text-entry': !photo}]} data-entry={post.id} aria-label={title} aria-describedby={subtitle ? `subtitle-${post.id}` : undefined} aria-haspopup="dialog">
+{photo ? <Fragment set:html={photo} /> : <span class="photo-space" aria-hidden="true"></span>}
+<span class="entry-caption"><span class="entry-title">{title}</span>{subtitle && <span class="entry-subtitle" id={`subtitle-${post.id}`}>{subtitle}</span>}</span>
+<time class="entry-date" datetime={post.data.createdAt}>{displayDate(post.data.createdAt)}</time>
+</button>
+<template id={`entry-${post.id}`}><header><time datetime={post.data.createdAt}>{displayDate(post.data.createdAt)}</time><h2>{post.data.title}</h2>{subtitle && <p class="entry-subtitle">{subtitle}</p>}</header><div class="body" set:html={body} /></template>
+<noscript><div class="body" set:html={body} /></noscript>
+</article>

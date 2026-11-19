@@ -3,7 +3,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import Logo from '../../components/Logo.astro';
 import { displayDate, lastModified } from '../../lib/dates.mjs';
 export async function getStaticPaths() {
-  return (await getCollection('posts', ({data}) => !data.draft)).map(post => ({params: {slug:post.id}, props:{post}}));
+  return (await getCollection('posts', ({data}) => !data.draft && data.category.id !== 'diary')).map(post => ({params: {slug:post.id}, props:{post}}));
 }
 const { post } = Astro.props;
 const { Content } = await render(post);

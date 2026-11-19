@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 import Logo from '../../components/Logo.astro';
 import { displayDate } from '../../lib/dates.mjs';
-const posts = (await getCollection('posts', ({data}) => !data.draft)).sort((a,b) => b.data.createdAt.localeCompare(a.data.createdAt));
-const categories = (await getCollection('categories')).sort((a,b) => a.data.order-b.data.order);
+const posts = (await getCollection('posts', ({data}) => !data.draft && data.category.id !== 'diary')).sort((a,b) => b.data.createdAt.localeCompare(a.data.createdAt));
+const categories = (await getCollection('categories', ({id}) => id !== 'diary')).sort((a,b) => a.data.order-b.data.order);
 ---
 <!doctype html>
 <html lang="ko">
