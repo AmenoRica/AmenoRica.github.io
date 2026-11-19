@@ -16,6 +16,9 @@ test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌
   for (const [id, draft] of [['diary-visible', false], ['diary-text', false], ['diary-draft', true], ['sample-diary-test', true]]) {
    writeFileSync(join(folder,`src/content/posts/${id}.md`),`---\ntitle: ${id}\ncreatedAt: "2026-10-04"\ncategory: diary\ndraft: ${draft}\n${id === 'diary-visible' ? 'subtitle: "일기 부제목"\n' : ''}---\n\nDiary body.\n${id === 'diary-visible' ? '\n![사진][cover]\n\n[cover]: /uploads/first.jpg\n' : ''}`);
   }
+  for (const [id, rating] of [['rating-zero', '0'], ['rating-half', '3.5'], ['rating-full', '5'], ['rating-null', 'null']]) {
+   writeFileSync(join(folder,`src/content/posts/${id}.md`),`---\ntitle: ${id}\ncreatedAt: \"2026-08-01\"\ncategory: diary\nrating: ${rating}\n---\nRated entry.\n`);
+  }
   for (let i=0;i<30;i++) writeFileSync(join(folder,`src/content/posts/diary-count-${i}.md`),'---\ntitle: count fixture\ncreatedAt: "2026-10-04"\ncategory: diary\n---\nCount fixture.');
   execFileSync(process.execPath,[resolve('node_modules/astro/bin/astro.mjs'),'build'],{cwd:folder,env:{...process.env,GITHUB_ACTIONS:'',ASTRO_TELEMETRY_DISABLED:'1'},stdio:'pipe'});
   const list=readFileSync(join(folder,'dist/blog/index.html'),'utf8');
@@ -38,6 +41,10 @@ test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌
   assert.equal(urls.length, 17);
   const diary = readFileSync(join(folder,'dist/diary/index.html'),'utf8');
   assert.match(diary, /diary-visible/);
+  for (const rating of [0, 3.5, 5]) assert.equal((diary.match(new RegExp(`aria-label="5점 만점에 ${rating}점"`, 'g')) || []).length, 2);
+  assert.equal((diary.match(/class="entry-rating"/g) || []).length, 6);
+  assert.match(diary, /clip-path:inset\(0 50% 0 0\)/);
+  assert.match(diary, /aria-describedby="rating-rating-zero"/);
   assert.equal((diary.match(/class="month-choice"/g) || []).length,12);
   assert.match(diary, /data-month="2026-01"/);
   assert.match(diary, /data-month="2026-12"/);
@@ -66,5 +73,9 @@ test('Markdown 글·초안·부제목·작성일 및 자동 페이지 수를 빌
    assert.doesNotMatch(readFileSync(path,'utf8'), /<meta[^>]*name=["']robots["'][^>]*noindex/);
   }
   assert.match(readFileSync('public/robots.txt','utf8'), /Sitemap: https:\/\/ameno\.cc\/sitemap\.xml/);
+  for (const rating of [-0.5, 5.5, 2.3]) {
+   writeFileSync(join(folder,'src/content/posts/invalid-rating.md'),`---\ntitle: invalid rating\ncreatedAt: "2026-08-01"\ncategory: diary\nrating: ${rating}\n---\nInvalid.`);
+   assert.throws(() => execFileSync(process.execPath,[resolve('node_modules/astro/bin/astro.mjs'),'build'],{cwd:folder,env:{...process.env,ASTRO_TELEMETRY_DISABLED:'1'},stdio:'pipe'}), error => /rating/.test(String(error.stdout) + String(error.stderr)));
+  }
  } finally { rmSync(folder,{recursive:true,force:true}); }
 });

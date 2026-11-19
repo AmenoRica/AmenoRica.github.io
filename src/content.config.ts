@@ -7,7 +7,7 @@ const day = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(value => {
 export const collections = {
   posts: defineCollection({
     loader: glob({ pattern: '*.md', base: './src/content/posts' }),
-    schema: z.object({ title: z.string().min(1), subtitle: z.string().optional(), createdAt: z.preprocess(value => value instanceof Date ? value.toISOString().slice(0,10) : value, day), category: reference('categories'), draft: z.boolean().default(false) }),
+    schema: z.object({ title: z.string().min(1), subtitle: z.string().optional(), rating: z.preprocess(value => value === null || value === '' ? undefined : value, z.number().min(0).max(5).multipleOf(0.5).optional()), createdAt: z.preprocess(value => value instanceof Date ? value.toISOString().slice(0,10) : value, day), category: reference('categories'), draft: z.boolean().default(false) }),
   }),
   categories: defineCollection({
     loader: glob({ pattern: '*.json', base: './src/content/categories', generateId: ({data}) => String(data.key) }),

@@ -47,3 +47,5 @@ html,body{height:100%;overflow:hidden}
 }
 .diary-card:has(.open-entry:focus-visible){background:var(--ink);color:var(--background);border-bottom-color:var(--background)}
 @media(prefers-reduced-motion:reduce){.diary-card{transition:none}}
+
+.entry-rating{display:flex;gap:3px;width:max-content;margin-top:8px;color:inherit}.entry-rating svg{display:block;width:14px;height:14px}#entry-content .entry-rating{margin-top:12px}#entry-content .entry-rating svg{width:16px;height:16px}

@@ -39,6 +39,13 @@ content:
           value: "{fields.key}"
           label: "{fields.title}"
           search: title
+      - name: rating
+        label: 별점 (일기 전용 · 선택)
+        type: number
+        description: "0~5점, 0.5점 단위. 비워 두면 표시하지 않습니다."
+        options:
+          min: 0
+          max: 5
       - name: draft
         label: 초안 (사이트에 표시하지 않음)
         type: boolean
