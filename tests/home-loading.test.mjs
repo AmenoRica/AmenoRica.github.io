@@ -10,10 +10,10 @@ test('scene assets start together, omit the unused clock, and propagate failures
   const load = url => { requests.push(url); return new Promise((resolve, reject) => pending.push({ resolve, reject })); };
   class Loader { loadAsync(url) { return load(url); } }
   class Sprite { decode() { return load(this.src); } }
-  const args = [{ TextureLoader: Loader }, Loader, Sprite, { body: { dataset: { workshop: 'theme' } } }, false];
+  const args = [{ TextureLoader: Loader }, Loader, Sprite, { body: { dataset: { workshop: 'theme' } }, documentElement: { dataset: { theme: 'dark' } } }, false];
   const ready = run(...args);
-  assert.equal(requests.length, 8);
-  assert.equal(requests.filter(url => url.endsWith('.webp')).length, 2);
+  assert.equal(requests.length, 7);
+  assert.deepEqual(requests.filter(url => url.endsWith('.webp')), ['./assets/photos/workshop-night-monitor-off.webp']);
   assert.ok(!requests.some(url => url.includes('digital-clock')));
   assert.equal(requests.filter(url => url.endsWith('-wire.glb')).length, 2);
   pending.forEach(item => item.resolve({ scene: {} }));

@@ -19,21 +19,35 @@ async function start() {
   const sprite = new Image();
   sprite.src = './assets/mobile-models/pixel-character.png';
   const spriteReady = sprite.decode();
-  const texturesReady = document.body.dataset.workshop
-    ? Promise.all(['sunlight','night-monitor-off'].map(name => new T.TextureLoader().loadAsync(`./assets/photos/workshop-${name}.webp`)))
-    : Promise.resolve([]);
-  const [models, , loadedTextures] = await Promise.all([modelsReady, spriteReady, texturesReady]);
+  const textures = new Map();
+  function loadBackdrop(mode) {
+    if (!textures.has(mode)) {
+      const name = mode === 'night' ? 'night-monitor-off' : 'sunlight';
+      const request = new T.TextureLoader().loadAsync(`./assets/photos/workshop-${name}.webp`)
+        .then(texture => {
+          texture.colorSpace = T.SRGBColorSpace;
+          return texture;
+        }).catch(error => {
+          textures.delete(mode);
+          throw error;
+        });
+      textures.set(mode, request);
+    }
+    return textures.get(mode);
+  }
+  const initialMode = document.body.dataset.workshop === 'theme' &&
+    document.documentElement.dataset.theme === 'dark' ? 'night' : 'workshop';
+  const [models, , texture] = await Promise.all([
+    modelsReady, spriteReady, document.body.dataset.workshop ? loadBackdrop(initialMode) : null
+  ]);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
   mount.append(renderer.domElement);
   const scene = new T.Scene();
   scene.background = new T.Color('#ffffff');
-  let workshop, workshopTextures;
-  if(document.body.dataset.workshop){
-    workshopTextures=loadedTextures;
-    workshopTextures.forEach(texture=>texture.colorSpace=T.SRGBColorSpace);
-    const texture=workshopTextures[0];
+  let workshop;
+  if(texture){
     workshop=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({map:texture,transparent:true,opacity:1,depthWrite:false,toneMapped:false}));
     workshop.position.z=-12;scene.add(workshop);
   }
@@ -414,17 +428,26 @@ async function start() {
     rigs.forEach(({pivot})=>pivot.traverse(item=>{
       if(item.material?.color)originalColors.set(item.material,item.material.color.clone());
     }));
+    let selectedMode = initialMode, loadedMode = initialMode;
     function setBackdrop(mode){
+      selectedMode = mode;
       const night=mode==='night';
-      workshop.visible=mode!=='white';
-      workshop.material.map=workshopTextures[night?1:0];
+      workshop.visible = mode === loadedMode;
+      if (mode !== 'white' && mode !== loadedMode) {
+        loadBackdrop(mode).then(texture => {
+          if (selectedMode !== mode) return;
+          loadedMode = mode;
+          workshop.material.map = texture;
+          workshop.visible = true;
+          resize();
+        }).catch(error => console.warn('Could not load workshop backdrop', error));
+      }
       scene.background.set(night?'#080c12':'#ffffff');
       glass.uniforms.night.value=Number(night);
       originalColors.forEach((color,material)=>{
         if(night)material.color.setRGB(1-color.r,1-color.g,1-color.b);
         else material.color.copy(color);
       });
-      console.assert(workshop.material.map===workshopTextures[night?1:0], 'Backdrop must match selected theme');
       options.forEach(item=>item.setAttribute('aria-pressed',String(item.dataset.backdrop===mode)));
       resize();
     }
