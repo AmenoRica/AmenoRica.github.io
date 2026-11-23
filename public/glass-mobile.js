@@ -204,7 +204,7 @@ async function start() {
       #include <colorspace_fragment>
     }`});
   postScene.add(new T.Mesh(new T.PlaneGeometry(2,2),glass));
-  const pointer=new T.Vector2(), smooth=new T.Vector2(), wind=new T.Vector2(), windTarget=new T.Vector2(), windDelta=new T.Vector2();let pointerSeen=false,paused=reduced.matches,time=0,last=performance.now(),frame;
+  const pointer=new T.Vector2(), smooth=new T.Vector2(), wind=new T.Vector2(), windTarget=new T.Vector2(), windDelta=new T.Vector2();let pointerSeen=false,paused=reduced.matches||button.getAttribute('aria-pressed')==='true',time=0,last=performance.now(),frame;
   let viewWidth=mount.clientWidth,viewHeight=mount.clientHeight,visible=true;
   new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(!visible)endDrag();}).observe(mount);
   const rain=Array.from({length:3},()=>({next:0,active:false}));
