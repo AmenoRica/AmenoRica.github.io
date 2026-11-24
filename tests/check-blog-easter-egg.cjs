@@ -4,7 +4,7 @@ const vm = require('node:vm');
 const {pathToFileURL} = require('node:url');
 const path = require('node:path');
 (async () => {
-  const {inkFrames} = await import(pathToFileURL(path.resolve('public/blog/theme-ink.mjs')));
+  const {inkFrames, inkEasing} = await import(pathToFileURL(path.resolve('public/theme-ink.mjs')));
   const physics = await import(pathToFileURL(path.resolve('public/blog/hanging-physics.mjs')));
   function element() {
     const handlers = {};
@@ -25,7 +25,7 @@ const path = require('node:path');
   const document={...element(),hidden:false,documentElement:element(),fonts:{load:async()=>{}},createElement:canvas,
     querySelector:selector=>({'#hanging-canvas':main,'#confetti':effects,'.theme-toggle':button,'#theme-ink':themeInk})[selector],querySelectorAll:()=>keys};
   let next, time=0;
-  const sandbox={physics,inkFrames,document,window:element(),innerWidth:1000,innerHeight:800,devicePixelRatio:1,
+  const sandbox={physics,inkFrames,inkEasing,document,window:element(),innerWidth:1000,innerHeight:800,devicePixelRatio:1,
     matchMedia:q=>q.includes('reduced')?motion:system,ResizeObserver:class{observe(){}},
     requestAnimationFrame:fn=>{next=fn;return 1},cancelAnimationFrame:()=>{next=undefined}};
   let savedTheme=null;
@@ -60,7 +60,7 @@ const path = require('node:path');
   system.matches=true;system.change();assert.equal(document.documentElement.dataset.theme,'light');
   motion.matches=true;motion.change();assert.equal(next,undefined);assert.equal(api.particles.length,0);
   keys[3].handlers.click();assert.equal(document.documentElement.dataset.theme,'dark');assert.equal(api.egg,undefined);
-  const framesInk=inkFrames(1000,800);
+  const framesInk=inkFrames(1000,800,16);
   const points=frame=>[...frame.clipPath.matchAll(/(-?[\d.]+)px (-?[\d.]+)px/g)].map(m=>[Number(m[1]),Number(m[2])]);
   function inside(polygon,x,y){let hit=false;for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
     const [a,b]=polygon[i],[c,d]=polygon[j];if((b>y)!==(d>y)&&x<(c-a)*(y-b)/(d-b)+a)hit=!hit;
@@ -81,7 +81,8 @@ const path = require('node:path');
   button.handlers.click();assert.equal(themeInk.hidden,false);
   assert.equal(document.documentElement.dataset.theme,'light');
   assert.equal(animations.at(-1).options.duration,1050);
-  assert.equal(animations.at(-1).keyframes.length,17);
+  assert.equal(animations.at(-1).options.easing,inkEasing);
+  assert.equal(animations.at(-1).keyframes.length,2);
   await Promise.resolve();assert.equal(themeInk.hidden,true);
   assert.equal(savedTheme,true);
   savedTheme=false;sandbox.window.handlers.pageshow();assert.equal(document.documentElement.dataset.theme,'dark');

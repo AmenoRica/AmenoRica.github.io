@@ -226,15 +226,16 @@ async function start() {
     endDrag();
     const w=viewWidth=mount.clientWidth,h=viewHeight=mount.clientHeight;renderer.setSize(w,h);target.setSize(Math.round(w*renderer.getPixelRatio()),Math.round(h*renderer.getPixelRatio()));
     camera.aspect=w/h;camera.position.z=camera.aspect<1?22:18;camera.updateProjectionMatrix();
-    if(workshop){
-      const height=2*Math.tan(T.MathUtils.degToRad(camera.fov/2))*(camera.position.z+12);
-      const texture=workshop.material.map,aspect=texture.image.width/texture.image.height;
-      workshop.scale.set(height*camera.aspect,height,1);
-      texture.repeat.set(Math.min(1,camera.aspect/aspect),Math.min(1,aspect/camera.aspect));
-      texture.offset.set((1-texture.repeat.x)/2,(1-texture.repeat.y)/2);
-    }
-
+    fitBackdrop();
     glass.uniforms.resolution.value.set(w,h);glass.uniforms.tileSize.value=w<600?33:45;clearTint();rain.forEach((drop,i)=>{drop.active=false;drop.next=time+(i===0?Math.random()*.6:Math.random()*7);});draw();
+  }
+  function fitBackdrop(){
+    if(!workshop)return;
+    const height=2*Math.tan(T.MathUtils.degToRad(camera.fov/2))*(camera.position.z+12);
+    const texture=workshop.material.map,aspect=texture.image.width/texture.image.height;
+    workshop.scale.set(height*camera.aspect,height,1);
+    texture.repeat.set(Math.min(1,camera.aspect/aspect),Math.min(1,aspect/camera.aspect));
+    texture.offset.set((1-texture.repeat.x)/2,(1-texture.repeat.y)/2);
   }
   function clearTint(){for(const cell of glass.uniforms.tintCells.value)cell.set(0,0,-100,-100);}
   function stepRain(){
@@ -422,6 +423,7 @@ async function start() {
   document.addEventListener('pointerleave',()=>{pointer.set(0,0);pointerSeen=false;});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)endDrag();last=performance.now();});
   addEventListener('scroll',()=>{if(paused)draw();},{passive:true});
+  resize();
   if(workshop){
     const options=[...document.querySelectorAll('[data-backdrop]')];
     const originalColors=new Map();
@@ -439,7 +441,8 @@ async function start() {
           loadedMode = mode;
           workshop.material.map = texture;
           workshop.visible = true;
-          resize();
+          fitBackdrop();
+          if(paused)draw();
         }).catch(error => console.warn('Could not load workshop backdrop', error));
       }
       scene.background.set(night?'#080c12':'#ffffff');
@@ -449,7 +452,7 @@ async function start() {
         else material.color.copy(color);
       });
       options.forEach(item=>item.setAttribute('aria-pressed',String(item.dataset.backdrop===mode)));
-      resize();
+      draw();
     }
     options.forEach(option=>{
       option.disabled=false;
@@ -464,6 +467,13 @@ async function start() {
     }
   }
   addEventListener('resize',resize);
-  addEventListener('pagehide',()=>{cancelAnimationFrame(frame);target.dispose();environment.dispose();renderer.dispose();},{once:true});
-  resize();updateButton();frame=requestAnimationFrame(loop);
+  addEventListener('pagehide', event => {
+    // A history traversal can restore this exact document and its animation loop.
+    if (event.persisted) return;
+    cancelAnimationFrame(frame);
+    target.dispose();
+    environment.dispose();
+    renderer.dispose();
+  });
+  updateButton();frame=requestAnimationFrame(loop);
 }

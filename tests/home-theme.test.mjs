@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
-import {inkFrames} from '../public/theme-ink.mjs';
+import {inkFrames, inkEasing} from '../public/theme-ink.mjs';
 
 test('snapshot before theme mutation; rapid toggles, system override and reduced motion', async () => {
   let click, systemChange, reducedChange, rendered;
@@ -18,14 +18,15 @@ test('snapshot before theme mutation; rapid toggles, system override and reduced
     }
   };
   vm.runInNewContext(readFileSync(new URL('../public/theme.mjs',import.meta.url),'utf8').replace(/^import .*;\n/,''),{
-    inkFrames, document,innerWidth:800,innerHeight:600,matchMedia:q=>q.includes('reduced')?reduced:system,
+    inkFrames, inkEasing, document,innerWidth:800,innerHeight:600,matchMedia:q=>q.includes('reduced')?reduced:system,
     window:{AmenoBackground:{setTheme:value=>rendered=value}}
   });
   assert.equal(rendered,false);
   click();assert.equal(rendered,false,'old theme remains until browser captures it');
   transitions[0].apply();transitions[0].resolve();await Promise.resolve();
   assert.equal(rendered,true);assert.equal(animations[0].options.pseudoElement,'::view-transition-old(root)');
-  assert.equal(animations[0].frames.length,17);
+  assert.equal(animations[0].frames.length,2);
+  assert.equal(animations[0].options.easing, inkEasing);
   click();assert.equal(animations[0].cancelled,true);click();assert.equal(transitions[1].skipped,true);
   transitions[1].apply();transitions[1].resolve();await Promise.resolve();
   assert.equal(animations.length,1,'stale transition never animates');

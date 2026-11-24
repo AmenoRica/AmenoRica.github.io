@@ -1,8 +1,14 @@
 # AmenoRica · Astro + Pages CMS
 
 Astro로 빌드해 GitHub Pages에 배포하는 홈페이지와 블로그 소스입니다.
-홈페이지의 최신 로컬 파일을 `public/`에 보존하고 블로그만 Astro 템플릿으로 옮겼습니다.
-샘플 글은 전부 삭제했습니다. 첫 글을 작성하기 전까지 목록은 비어 있습니다.
+| 위치 | 역할 |
+| --- | --- |
+| `public/` | 정적 홈, 3D 장면, 이력서, 브라우저용 CSS·JS와 배포 에셋 |
+| `src/pages/` | 블로그 목록·본문, 일기, 사이트맵 |
+| `src/components/` · `src/lib/` | 공통 로고, 일기 컴포넌트, 글 공개 조건과 날짜 처리 |
+| `src/content/` | Pages CMS에서 편집하는 글과 카테고리 |
+| `scripts/` · `tests/` | 에셋 생성·캐시 버전 처리와 회귀 테스트 |
+| `archive/` · `asset-sources/workshop/` | 이전 화면의 스크립트와 작업실 배경 PNG 원본 |
 
 ## 글 작성
 
@@ -60,10 +66,10 @@ npm run preview
 `src/content/posts/*.md`: 글 · `src/content/categories/*.json`: 카테고리 · `src/pages/blog`: 화면 · `public/blog`: 기존 물리/테마/목록 코드.
 `public/`의 홈페이지는 기존 정적 파일이며, 홈페이지 수정은 여기서 진행합니다.
 GitHub Actions는 수정일 계산을 위해 전체 Git 기록을 가져옵니다(`fetch-depth: 0`).
-현재 템플릿의 기존 `noindex` 설정은 유지되어 있습니다.
+공개 페이지 목록은 `/sitemap.xml`에서 확인할 수 있습니다.
 
 공식 문서: https://pagescms.org/docs/quick-start/ · https://pagescms.org/docs/configuration/ · https://docs.astro.build/en/guides/deploy/github/
 
-## 2026-11-09 디자인 배포
+## 홈 배경
 
-홈은 `public/glass-mobile.js`의 유리와 6개 모빌, `assets/photos/workshop-sunlight.png`와 `workshop-night-monitor-off.png`를 사용합니다. 테마는 `theme.mjs`와 연동합니다. 이미지 두 장은 생성 이미지입니다. 모델 출처와 변경 내역은 `/mobile-credits.html`에서 제공합니다. 로컬 폰트·배경 비교 페이지는 배포하지 않습니다.
+홈은 `public/glass-mobile.js`의 유리와 6개 모빌, `assets/photos/workshop-sunlight.webp`와 `workshop-night-monitor-off.webp`를 사용합니다. 테마는 `theme.mjs`와 연동합니다. 이미지 두 장은 생성 이미지입니다. 모델 출처와 변경 내역은 `/mobile-credits.html`에서 제공합니다. 로컬 폰트·배경 비교 페이지는 배포하지 않습니다.

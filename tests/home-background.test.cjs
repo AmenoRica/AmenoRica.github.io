@@ -1,4 +1,4 @@
-function loadClassic(name) { const module = {exports:{}}; new Function('module', require('node:fs').readFileSync(__dirname+'/../public/'+name,'utf8'))(module); return module.exports; }
+function loadClassic(name) { const module = {exports:{}}; new Function('module', require('node:fs').readFileSync(__dirname+'/../archive/home-patterns/'+name,'utf8'))(module); return module.exports; }
 const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 let next=0,frames=new Map(),resize,history,themeChange;
 const light={matches:false,addEventListener:(_,fn)=>themeChange=fn};
@@ -6,7 +6,7 @@ function canvas(){const context={clears:0,fills:0,commits:0,moveTo(){},lineTo(){
 const visible=canvas(),curtain=canvas();let created=0;
 const window={addEventListener:(_,fn)=>resize=fn,AmenoPatterns:{choosePath:loadClassic('patterns.js').choosePath,makeStrip:()=>({height:100,width:4200})}};
 const env={window,matchMedia:()=>light,document:{querySelector:selector=>selector==='.ink-curtain'?curtain:visible,createElement:()=>{const c=canvas();if(!created++)history=c;return c;}},innerWidth:800,innerHeight:600,devicePixelRatio:2,Image:class{set src(v){this.onload();}},console,requestAnimationFrame:fn=>{frames.set(++next,fn);return next;},cancelAnimationFrame:id=>frames.delete(id)};
-vm.runInNewContext(fs.readFileSync(__dirname+'/../public/background.js','utf8'),env);
+vm.runInNewContext(fs.readFileSync(__dirname+'/../archive/home-patterns/background.js','utf8'),env);
 const api=window.AmenoBackground;
 assert.deepEqual(Array.from(visible.getContext().lastDraw.slice(1)),[1648,1748,800,600,1648,1748,800,600]);
 const emptyCurtainClears=curtain.getContext().clears;

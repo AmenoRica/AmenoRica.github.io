@@ -8,7 +8,10 @@ if (groups.length) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const edge = () => records.getBoundingClientRect().top;
   let frame = 0, scrollFrame = 0, userScrolling = true;
+  let selectedMonth;
   function select(month) {
+    if (month === selectedMonth) return;
+    selectedMonth = month;
     choices.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.month === month)));
     status.textContent = populated.includes(month) ? '' : '기록 없는 달 · 목록의 해당 경계';
   }
@@ -18,8 +21,11 @@ if (groups.length) {
     records.style.setProperty('--fade-edge', records.scrollTop > 0 ? '0px' : '-24px');
     if (!userScrolling || document.querySelector('#entry-dialog').open) return;
     let current = groups[0];
-    for (const group of groups) if (group.getBoundingClientRect().top <= boundary + 24) current = group;
-    if (records.clientHeight + records.scrollTop >= records.scrollHeight - 2) current = groups.at(-1);
+    for (const group of groups) {
+      if (group.getBoundingClientRect().top > boundary + 24) break;
+      current = group;
+    }
+    if (records.scrollTop > 0 && records.clientHeight + records.scrollTop >= records.scrollHeight - 2) current = groups.at(-1);
     select(current.dataset.month);
   }
   function schedule() { if (!frame) frame = requestAnimationFrame(sync); }

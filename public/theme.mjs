@@ -1,4 +1,4 @@
-import { inkFrames } from './theme-ink.mjs';
+import { inkFrames, inkEasing } from './theme-ink.mjs';
 
 const systemLight = matchMedia('(prefers-color-scheme: light)');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -26,7 +26,7 @@ function setTheme(next, animate = true) {
     current.ready.then(() => {
       if (id !== request) return;
       inkAnimation = document.documentElement.animate(inkFrames(innerWidth, innerHeight), {
-        duration: 1050, easing: 'linear', fill: 'forwards', pseudoElement: '::view-transition-old(root)'
+        duration: 1050, easing: inkEasing, fill: 'forwards', pseudoElement: '::view-transition-old(root)'
       });
     }).catch(apply);
     current.finished.finally(() => {

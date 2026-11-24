@@ -70,3 +70,12 @@ test('calendar and list scrollbar timers reset independently', () => {
  timers.get(2)();assert.equal(records.classes.size,0);assert.equal(calendar.classes.size,1);
  timers.get(3)();assert.equal(calendar.classes.size,0);
 });
+
+test('keeps the newest month selected when all records fit without scrolling', () => {
+ const state = setup();
+ const records = state.get('records');
+ records.scrollHeight = records.clientHeight;
+ records.fire('scroll');
+ state.advance(16);
+ assert.equal(state.get('2026-11')['aria-pressed'], 'true');
+});

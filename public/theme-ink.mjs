@@ -1,7 +1,7 @@
-export function inkFrames(width, height) {
+export function inkFrames(width, height, intervals = 1) {
   const reach = Math.hypot(width / 2, height) * 2.2;
-  return Array.from({ length: 17 }, (_, frame) => {
-    const progress = frame / 16;
+  return Array.from({ length: intervals + 1 }, (_, index) => {
+    const progress = index / intervals;
     const radius = reach * progress ** 1.15;
     const points = [`${width / 2}px -8px`];
     for (let i = 0; i <= 160; i++) {
@@ -13,3 +13,7 @@ export function inkFrames(width, height) {
     return { clipPath: `polygon(evenodd, 0px 0px,${width}px 0px,${width}px ${height}px,0px ${height}px,0px 0px,${points.join(',')},${width / 2}px -8px,0px 0px)`, offset: progress };
   });
 }
+
+// Every vertex moves radially. Interpolate the original 16 time intervals
+// with one easing curve shared by all vertices.
+export const inkEasing = 'linear(' + Array.from({ length: 17 }, (_, i) => (i / 16) ** 1.15).join(',') + ')';

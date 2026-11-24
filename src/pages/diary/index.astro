@@ -1,4 +1,5 @@
 ---
+import AmenoRule from '../../components/AmenoRule.astro';
 import { getCollection, render } from 'astro:content';
 import { visibleDiary, archiveMonths } from '../../lib/diary.mjs';
 import DiaryEntry from '../../components/DiaryEntry.astro';
@@ -28,7 +29,7 @@ const years = [...new Set(months.map(month => month.slice(0,4)))];
 </head>
 <body>
 <a class="skip" href="#records">기록으로 건너뛰기</a>
-<nav aria-label="주 메뉴"><a class="brand" href="/" aria-label="AmenoRica"><svg class="ameno-rule" viewBox="0 0 17.5 100" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="20" width="1" height="60"/><rect x="5.5" y="0" width="1" height="100"/><rect x="11" y="40" width="1" height="60"/><rect x="16.5" y="60" width="1" height="40"/></svg><span>AmenoRica</span></a><a href="/blog/">WeB*LOG ↗</a></nav>
+<nav aria-label="주 메뉴"><a class="brand" href="/" aria-label="AmenoRica"><AmenoRule /><span>AmenoRica</span></a><a href="/blog/">WeB*LOG ↗</a></nav>
 <main class="archive">
 <h1 class="sr-only">일기 아카이브</h1>
 {posts.length ? <div class="archive-layout">

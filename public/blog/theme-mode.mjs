@@ -1,4 +1,4 @@
-import { inkFrames } from './theme-ink.mjs';
+import { inkFrames, inkEasing } from '../theme-ink.mjs';
 
 export function createTheme(onChange = () => {}) {
   const preference = window.blogTheme;
@@ -17,7 +17,7 @@ export function createTheme(onChange = () => {}) {
     if (animate && changed && !reduced.matches && !document.hidden && ink.animate) {
       const frames = inkFrames(innerWidth, innerHeight);
       ink.style.clipPath = frames[0].clipPath; ink.hidden = false;
-      transition = ink.animate(frames, { duration: 1050, easing: 'linear', fill: 'forwards' });
+      transition = ink.animate(frames, { duration: 1050, easing: inkEasing, fill: 'forwards' });
       transition.finished.then(() => {
         if (current !== request) return;
         ink.hidden = true; transition.cancel(); transition = undefined;

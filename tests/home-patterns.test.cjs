@@ -1,4 +1,4 @@
-function loadClassic(name) { const module = {exports:{}}; new Function('module', require('node:fs').readFileSync(__dirname+'/../public/'+name,'utf8'))(module); return module.exports; }
+function loadClassic(name) { const module = {exports:{}}; new Function('module', require('node:fs').readFileSync(__dirname+'/../archive/home-patterns/'+name,'utf8'))(module); return module.exports; }
 const assert=require('node:assert/strict');
 const {edgePath,choosePath}=loadClassic('patterns.js');
 let seed=17;

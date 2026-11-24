@@ -98,18 +98,21 @@ if (typeof document !== 'undefined') (() => {
   let pointerDown = false, hover = false, resumeAt = 0, previousTime = 0;
   let marqueeFrame = 0, fractionalStep = 0;
   const motionButton = document.querySelector('.motion-control');
-  const cycleWidth = () => cells[marks.length].offsetLeft - cells[0].offsetLeft;
-  function resetCarousel() {
-    carousel.scrollLeft = reduced.matches ? 0 : cycleWidth();
-    schedule();
+  let cycleWidth = 0;
+  function measureCarousel() {
+    const width = cells[marks.length].offsetLeft - cells[0].offsetLeft;
+    if (width === cycleWidth) return;
+    cycleWidth = width;
+    carousel.scrollLeft = reduced.matches ? 0 : width;
   }
   function tick(time) {
+    marqueeFrame = 0;
     const elapsed = Math.min(50, time - (previousTime || time));
     previousTime = time;
     const paused = pointerDown || hover || carousel.matches(':focus-within') || time < resumeAt ||
       reduced.matches || motionButton.getAttribute('aria-pressed') === 'true';
     if (!paused) {
-      const width = cycleWidth();
+      const width = cycleWidth;
       fractionalStep += elapsed * .022;
       const step = Math.floor(fractionalStep);
       fractionalStep -= step;
@@ -118,10 +121,15 @@ if (typeof document !== 'undefined') (() => {
     marqueeFrame = requestAnimationFrame(tick);
   }
   function updateMarquee() {
-    cancelAnimationFrame(marqueeFrame);
-    previousTime = 0;
-    if (narrow.matches && window.scrollY < 1 && !document.hidden && !reduced.matches)
+    const running = narrow.matches && window.scrollY < 1 && !document.hidden &&
+      !reduced.matches && motionButton.getAttribute('aria-pressed') !== 'true';
+    if (running && !marqueeFrame) {
+      previousTime = 0;
       marqueeFrame = requestAnimationFrame(tick);
+    } else if (!running && marqueeFrame) {
+      cancelAnimationFrame(marqueeFrame);
+      marqueeFrame = 0;
+    }
   }
   carousel.addEventListener('pointerdown', () => { pointerDown = true; });
   window.addEventListener('pointerup', () => { pointerDown = false; resumeAt = performance.now() + 1500; });
@@ -131,31 +139,27 @@ if (typeof document !== 'undefined') (() => {
   carousel.addEventListener('wheel', () => { resumeAt = performance.now() + 1500; }, { passive: true });
   carousel.addEventListener('scroll', () => {
     if (!reduced.matches && !carousel.matches(':focus-within')) {
-      const width = cycleWidth();
+      const width = cycleWidth;
       if (width && (carousel.scrollLeft < width / 2 || carousel.scrollLeft > width * 2))
         carousel.scrollLeft = wrapCarousel(carousel.scrollLeft, width);
     }
   }, { passive: true });
   document.addEventListener('visibilitychange', updateMarquee);
-  narrow.addEventListener('change', resetCarousel);
-  reduced.addEventListener('change', resetCarousel);
-  let frame = 0;
-  function render() {
-    frame = 0;
+  function updateLayout() {
     const mobileHome = narrow.matches;
     carousel.classList.toggle('active', mobileHome);
     carousel.inert = !mobileHome;
     dock.hidden = mobileHome;
     dock.inert = mobileHome;
-    updateMarquee();
     dock.classList.add('positioned');
+    measureCarousel();
+    updateMarquee();
   }
-  function schedule() { if (!frame) frame = requestAnimationFrame(render); }
-  window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', schedule);
-  reduced.addEventListener('change', schedule);
-  const observer = new ResizeObserver(schedule);
-  [hero, ...marks, ...targets].forEach(element => observer.observe(element));
-  document.fonts.ready.then(resetCarousel);
-  render();
+  window.addEventListener('scroll', updateMarquee, { passive: true });
+  motionButton.addEventListener('click', updateMarquee);
+  narrow.addEventListener('change', updateLayout);
+  reduced.addEventListener('change', updateLayout);
+  window.addEventListener('resize', measureCarousel);
+  document.fonts.ready.then(measureCarousel);
+  updateLayout();
 })();
